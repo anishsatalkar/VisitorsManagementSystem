@@ -1,0 +1,61 @@
+from django.http import HttpResponse
+from django.shortcuts import render
+import xlsxwriter
+from Manage.models import Log
+
+from Manage.forms import VisitorForm, AddressForm
+from Manage.models import Visitor, Address
+
+# def create_excel(request):
+    # workbook = xlsxwriter.Workbook('Visitors.xlsx')
+    # worksheet
+
+
+def add_visitor(request):
+    if request.method == 'GET':
+        return render(request, 'add_visitor.html', {'form': VisitorForm(),
+                                                    'address_form': AddressForm()})
+    if request.method == 'POST':
+        address_form = AddressForm(request.POST)
+        visitor_form = VisitorForm(request.POST)
+        if address_form.is_valid() and visitor_form.is_valid():
+            print('form valid')
+            address_obj = Address.objects.create(building=address_form.cleaned_data.get('building'),
+                                                 pin_code=address_form.cleaned_data.get('pin_code'),
+                                                 street=address_form.cleaned_data.get('street'),
+                                                 city=address_form.cleaned_data.get('city'),
+                                                 state=address_form.cleaned_data.get('state'),
+                                                 country=address_form.cleaned_data.get('country'))
+            visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
+                                                 middle_name=visitor_form.cleaned_data.get('middle_name'),
+                                                 last_name=visitor_form.cleaned_data.get('last_name'),
+                                                 email=visitor_form.cleaned_data.get('email'),
+                                                 mobile=visitor_form.cleaned_data.get('mobile'),
+                                                 phone=visitor_form.cleaned_data.get('phone'),
+                                                 organisation=visitor_form.cleaned_data.get('organisation'),
+                                                 university=visitor_form.cleaned_data.get('university'),
+                                                 designation=visitor_form.cleaned_data.get('designation'),
+                                                 address=address_obj)
+
+            visitor_obj.save()
+            return render(request, 'add_visitor.html', {'form': VisitorForm,
+                                                        'address_form': AddressForm})
+        else:
+            return HttpResponse('Form Invalid')
+
+
+def show_home(request):
+    if request.method == 'GET':
+        return render(request, 'base.html')
+    return None
+
+
+def view_visitors(request):
+    if request.method == 'POST':
+        visitor = Visitor.objects.get(pk=request.POST.get('user_name'))
+        return render(request, 'view_profile.html', {'visitor': visitor})
+    if request.method == 'GET':
+        visitors = Visitor.objects.all()
+        return render(request, 'view_visitors.html', {'visitors': visitors})
+
+    return None

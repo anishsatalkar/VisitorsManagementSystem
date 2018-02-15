@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container-fluid" style="background-color: lightsteelblue;padding-top: 8px;padding-bottom: 128px">
+        <div class="row">
+            <div class="col-md-2" >
+
+            </div>
+            <div class="col-md-8" style="background-color: ghostwhite;padding: 24px">
+                <legend style="color: cornflowerblue">Visitors</legend>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Organisation/University</th>
+                        <th>Mobile</th>
+                        <th>Mobile</th>
+                        <th>Mobile</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form action="#" method="post">
+                        {% for visitor in visitors %}
+                            {% csrf_token %}
+                            {#                        data-toggle="collapse" data-target=".{{ forloop.counter }}"#}
+                            <tr>
+                                <td><button class="btn btn-default" type="submit" name="user_name" value="{{ visitor.pk }}">{{ visitor.first_name }}</button></td>
+                                <td>{{ visitor.last_name }}</td>
+                                <td>{{ visitor.email }}</td>
+                                <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                <td>{{ visitor.mobile }}</td>
+                            </tr>
+                            {#                        <tr class="collapse {{ forloop.counter }}">#}
+                            {#                            <td>#}
+                            {#                                <div class="row">#}
+                            {#                                    <div class="col-md-4">#}
+                            {#                                        <label>Middle Name : </label>#}
+                            {##}
+                            {#                                    </div>#}
+                            {#                                    <div class="col-md-4">#}
+                            {#                                        <label>{{ visitor.middle_name }}</label>#}
+                            {##}
+                            {#                                    </div>#}
+                            {#                                    <div class="col-md-4">#}
+                            {#                                    </div>  #}
+                            {#                                </div>#}
+                            {#                            </td>#}
+                            {#                        </tr>#}
+                        {% endfor %}
+
+                    </form>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock content %}

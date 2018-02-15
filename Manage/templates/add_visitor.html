@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container-fluid"
+         style="background-color: lightsteelblue;padding-top: 8px;padding-bottom: 128px;box-shadow: 0 8px 8px -6px black">
+        <div class="row">
+            <div class="col-md-2" style="color: cornflowerblue">
+
+            </div>
+            <div class="col-md-8" style="background-color: ghostwhite;padding: 24px">
+                <legend style="color: cornflowerblue">Visitor</legend>
+                <form action="#" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.first_name.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ form.first_name.errors }}</span>
+                            <div class="">{{ form.first_name }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.middle_name.label_tag }}</label>
+                            <span class="error" id="middle_name_error">{{ form.middle_name.errors }}</span>
+                            <div class="">{{ form.middle_name }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.last_name.label_tag }}</label>
+                            <span class="error" id="last_name_error">{{ form.last_name.errors }}</span>
+                            <div class="">{{ form.last_name }}</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.email.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ form.email.errors }}</span>
+                            <div class="">{{ form.email }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.mobile.label_tag }}</label>
+                            <span class="error" id="middle_name_error">{{ form.mobile.errors }}</span>
+                            <div class="">{{ form.mobile }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.phone.label_tag }}</label>
+                            <span class="error" id="last_name_error">{{ form.phone.errors }}</span>
+                            <div class="">{{ form.phone }}</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.organisation.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ form.organisation.errors }}</span>
+                            <div class="">{{ form.organisation }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.university.label_tag }}</label>
+                            <span class="error" id="middle_name_error">{{ form.university.errors }}</span>
+                            <div class="">{{ form.university }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.designation.label_tag }}</label>
+                            <span class="error" id="last_name_error">{{ form.designation.errors }}</span>
+                            <div class="">{{ form.designation }}</div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin: 24px">
+                        <legend style="color: cornflowerblue">Address</legend>
+
+                    </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.building.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ address_form.building.errors }}</span>
+                            <div class="">{{ address_form.building }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.pin_code.label_tag }}</label>
+                            <span class="error" id="middle_name_error">{{ address_form.pin_code.errors }}</span>
+                            <div class="">{{ address_form.pin_code }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.street.label_tag }}</label>
+                            <span class="error" id="last_name_error">{{ address_form.street.errors }}</span>
+                            <div class="">{{ address_form.street }}</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.city.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ address_form.city.errors }}</span>
+                            <div class="">{{ address_form.city }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.state.label_tag }}</label>
+                            <span class="error" id="middle_name_error">{{ address_form.state.errors }}</span>
+                            <div class="">{{ address_form.state }}</div>
+                        </div>
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ address_form.country.label_tag }}</label>
+                            <span class="error" id="last_name_error">{{ address_form.country.errors }}</span>
+                            {{ address_form.country }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-group">
+                            <label for="comment">{{ form.purpose_of_visit.label_tag }}</label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" style="margin:0 auto;
+    display:block;margin-bottom: 128px;background-color: lightsteelblue;
+color:white;">Submit
+                    </button>
+
+
+                </form>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function isAlphabet(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+                return true;
+            }
+            return false;
+        }
+
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+
+{% endblock content %}
