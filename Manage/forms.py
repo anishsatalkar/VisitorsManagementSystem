@@ -20,7 +20,7 @@ class VisitorForm(ModelForm):
 
 
     class Meta:
-        
+
         model = Visitor
         fields = '__all__'
 
