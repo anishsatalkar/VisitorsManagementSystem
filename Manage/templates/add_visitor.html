@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <div class="container-fluid"
-         style="background-color: lightsteelblue;padding-top: 8px;padding-bottom: 128px;box-shadow: 0 8px 8px -6px black">
+         style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;box-shadow: 0 8px 8px -6px black;">
         <div class="row">
-            <div class="col-md-2" style="color: cornflowerblue">
-
-            </div>
-            <div class="col-md-8" style="background-color: ghostwhite;padding: 24px">
-                <legend style="color: cornflowerblue">Visitor</legend>
+            <div class="col-md-8 col-md-offset-2 central-view">
+                <legend style="color: dodgerblue;margin: 24px">Visitor</legend>
                 <form action="#" method="post" class="form-horizontal">
                     {% csrf_token %}
                     <div class="row" style="margin: 24px">
@@ -62,9 +58,16 @@
                             <div class="">{{ form.designation }}</div>
                         </div>
                     </div>
+                    <div class="row" style="margin: 24px">
+                        <div class="form-element col-md-4">
+                            <label class="control-label">{{ form.date_time_of_entry.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
+                            {{ form.date_time_of_entry }}
+                        </div>
+                    </div>
 
                     <div class="row" style="margin: 24px">
-                        <legend style="color: cornflowerblue">Address</legend>
+                        <legend style="color: dodgerblue">Address</legend>
 
                     </div>
                     <div class="row" style="margin: 24px">
@@ -95,21 +98,20 @@
                             <span class="error" id="middle_name_error">{{ address_form.state.errors }}</span>
                             <div class="">{{ address_form.state }}</div>
                         </div>
-                        <div class="form-element col-md-4">
+                        <div class="col-md-4">
                             <label class="control-label">{{ address_form.country.label_tag }}</label>
                             <span class="error" id="last_name_error">{{ address_form.country.errors }}</span>
                             {{ address_form.country }}
                         </div>
                     </div>
-                    <div class="row" style="margin: 24px">
+                    <div class="row" style="margin: 54px">
                         <div class="form-group">
                             <label for="comment">{{ form.purpose_of_visit.label_tag }}</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                            {{ form.purpose_of_visit }}
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default" style="margin:0 auto;
-    display:block;margin-bottom: 128px;background-color: lightsteelblue;
-color:white;">Submit
+                    <button type="submit" class="btn btn-primary" style="margin:0 auto;
+    display:block;margin-bottom: 128px;">Submit
                     </button>
 
 
@@ -125,20 +127,22 @@ color:white;">Submit
         function isAlphabet(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
-                return true;
-            }
-            return false;
+            return (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode === 32;
+
         }
 
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
-                return false;
-            }
-            return true;
+            return !((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 107) || (charCode > 107 && charCode < 123));
+
         }
+
+        $(function () {
+            $("#datepicker1").datetimepicker({
+                format: 'm/d/Y H:m'
+            });
+         });
     </script>
 
 

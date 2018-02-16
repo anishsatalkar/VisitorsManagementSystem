@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -11,12 +11,13 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
-            return HttpResponseRedirect('/home/add_visitor/',{'user_data' : username})
+            login(request,user)
+            return HttpResponseRedirect('/home/add_visitor/',{'user_data' : user})
         else:
-            return HttpResponse('invalid credentials')
+            return render(request, 'login.html',{'error':'Invalid Credentials'})
     else:
         return render(request, 'login.html')
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/login/')
+    return HttpResponseRedirect('/')

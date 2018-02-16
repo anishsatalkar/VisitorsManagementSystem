@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from Manage.models import Visitor, Address
+from Manage.models import Visitor, Address, Log
 
 admin.site.register(Visitor)
 admin.site.register(Address)
+admin.site.register(Log)

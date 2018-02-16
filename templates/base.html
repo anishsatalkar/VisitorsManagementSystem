@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Visitor Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
     <link rel="stylesheet"
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css">
 
 
+
+
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.17/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.17/jquery.datetimepicker.css">
+
+
+
     <style type="text/css">
         html, body {
-            background: #fff;
+            background: darkslategrey;
             font-family: 'Roboto', sans-serif;
             overflow-x: hidden;
         }
@@ -32,6 +48,16 @@
             text-align: center;
         }
 
+        .alert {
+            margin-bottom: 0px;
+        }
+
+        .central-view {
+            background-color: #F7F7F7;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
         .navbar-default .navbar-nav > .active > a,
         .navbar-default .navbar-nav > .active > a:hover,
         .navbar-default .navbar-nav > .active > a:focus {
@@ -44,14 +70,13 @@
         }
 
 
-
-
     </style>
 
     {% load staticfiles %}
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="margin-top: 16px; margin-left: 16px; margin-right: 16px">
+
     <div class="container-fluid">
         <div class="navbar-header">
             <img src="{% static '/logo-vit.png' %}" style="height: 37px;width: 28px;margin-top: 5px;
@@ -62,12 +87,44 @@ margin-right: 20px">
             <li><a href="{% url 'view_visitors' %}">View</a></li>
         </ul>
         <div class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'logout_user' %}">Logout</a></li>
+            {#            <ul class="dropdown-menu">#}
+            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
+            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
+            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
+            {#            </ul>#}
+            <div class="dropdown" style="padding-top: 8px;margin-right: 16px">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    {% if user %}
+                        {{ user }}
+                    {% endif %}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'logout_user' %}">Logout</a></li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </nav>
 <div id="content">
+    {% if error %}
+        <div class="alert alert-danger">
+            <strong>Error!</strong>
+            {% autoescape off %}{{ error }} {% endautoescape %}
+        </div>
+    {% endif %}
+    {% if info %}
+        <div class="alert alert-info">
+            {% autoescape off %}{{ info }} {% endautoescape %}
+        </div>
+    {% endif %}
+    {% if success %}
+        <div class="alert alert-success">
+            {% autoescape off %}{{ success }} {% endautoescape %}
+        </div>
+    {% endif %}
     {% block content %}
+
 
     {% endblock content %}
 </div>

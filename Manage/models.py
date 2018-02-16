@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Address(models.Model):
@@ -28,6 +30,8 @@ class Visitor(models.Model):
     designation = models.CharField(max_length=100)
 
     purpose_of_visit = models.CharField(max_length=500, null=True , blank=True)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    date_time_of_entry = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -36,7 +40,7 @@ class Visitor(models.Model):
 class Log(models.Model):
     visitor = models.ForeignKey(Visitor)
     date_time_of_entry = models.DateTimeField()
-    date_time_of_exit = models.DateTimeField()
+    date_time_of_exit = models.DateTimeField(null=True, blank=True)
 
     def log_entry(self, visitor , date_time_of_entry, date_time_of_exit):
         self.visitor = visitor

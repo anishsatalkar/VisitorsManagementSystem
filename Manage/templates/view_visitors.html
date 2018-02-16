@@ -2,65 +2,58 @@
 
 {% block content %}
 
-    <div class="container-fluid" style="background-color: lightsteelblue;padding-top: 8px;padding-bottom: 128px">
+    <div class="container-fluid"
+         style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;box-shadow: 0 8px 8px -6px black;">
         <div class="row">
-            <div class="col-md-2" >
+            <div class="col-md-1">
 
             </div>
-            <div class="col-md-8" style="background-color: ghostwhite;padding: 24px">
-                <legend style="color: cornflowerblue">Visitors</legend>
+            <div class="col-md-10 central-view">
+                <legend style="color: dodgerblue">Visitors</legend>
+                {% if visitors.count == 0 %}
+                    <h3>No Visitors Added</h3>
+                {% else %}
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Organisation/University</th>
-                        <th>Mobile</th>
-                        <th>Mobile</th>
-                        <th>Mobile</th>
-                        <th>Mobile</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <form action="#" method="post">
-                        {% for visitor in visitors %}
-                            {% csrf_token %}
-                            {#                        data-toggle="collapse" data-target=".{{ forloop.counter }}"#}
-                            <tr>
-                                <td><button class="btn btn-default" type="submit" name="user_name" value="{{ visitor.pk }}">{{ visitor.first_name }}</button></td>
-                                <td>{{ visitor.last_name }}</td>
-                                <td>{{ visitor.email }}</td>
-                                <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
-                                <td>{{ visitor.mobile }}</td>
-                            </tr>
-                            {#                        <tr class="collapse {{ forloop.counter }}">#}
-                            {#                            <td>#}
-                            {#                                <div class="row">#}
-                            {#                                    <div class="col-md-4">#}
-                            {#                                        <label>Middle Name : </label>#}
-                            {##}
-                            {#                                    </div>#}
-                            {#                                    <div class="col-md-4">#}
-                            {#                                        <label>{{ visitor.middle_name }}</label>#}
-                            {##}
-                            {#                                    </div>#}
-                            {#                                    <div class="col-md-4">#}
-                            {#                                    </div>  #}
-                            {#                                </div>#}
-                            {#                            </td>#}
-                            {#                        </tr>#}
-                        {% endfor %}
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Organisation/University</th>
+                            <th>Mobile</th>
+                            <th>Date and Time of Entry</th>
+                            <th>Purpose Of Visit</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form action="#" method="post">
+                            {% for visitor in visitors %}
+                                {% csrf_token %}
+                                {#                        data-toggle="collapse" data-target=".{{ forloop.counter }}"#}
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-default" type="submit" name="user_name"
+                                                value="{{ visitor.pk }}">{{ visitor.first_name }}</button>
+                                    </td>
+                                    <td>{{ visitor.last_name }}</td>
+                                    <td>{{ visitor.email }}</td>
+                                    <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                    <td>{{ visitor.mobile }}</td>
+                                    <td>{{ visitor.date_time_of_entry }}</td>
+                                    <td>{{ visitor.purpose_of_visit }}</td>
+                                </tr>
+                            {% endfor %}
 
-                    </form>
+                        </form>
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                {% endif %}
 
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
 
             </div>
         </div>
