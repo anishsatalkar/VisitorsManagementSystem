@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="container-fluid"
-         style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;box-shadow: 0 8px 8px -6px black;">
+         style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;">
         <div class="row">
             <div class="col-md-1">
 
@@ -14,7 +14,7 @@
                     <h3>No Visitors Added</h3>
                 {% else %}
 
-                    <table class="table table-striped table-hover table-bordered">
+                    <table id="visitor_table" class="display table table-striped table-hover table-bordered">
                         <thead>
                         <tr>
                             <th>Firstname</th>
@@ -59,6 +59,12 @@
         </div>
 
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#visitor_table').DataTable();
+        });
+    </script>
 
 
 
