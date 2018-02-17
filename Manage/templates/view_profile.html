@@ -6,43 +6,48 @@
         <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8     central-view">
+            <div class="col-md-8 central-view">
                 <legend style="color: cornflowerblue">Visitor Profile</legend>
-                <dl class="dl-horizontal">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <dl class="dl-horizontal">
 
-                    <dt>First name</dt>
-                    <dd>{{ visitor.first_name }}</dd>
+                        <dt>First name</dt>
+                        <dd>{{ visitor.first_name }}</dd>
 
-                    <dt>Middle name</dt>
-                    <dd>{{ visitor.middle_name }}</dd>
+                        <dt>Middle name</dt>
+                        <dd>{{ visitor.middle_name }}</dd>
 
-                    <dt>Last name</dt>
-                    <dd>{{ visitor.last_name }}</dd>
+                        <dt>Last name</dt>
+                        <dd>{{ visitor.last_name }}</dd>
 
-                    <dt>Email</dt>
-                    <dd>{{ visitor.email }}</dd>
+                        <dt>Email</dt>
+                        <dd>{{ visitor.email }}</dd>
 
-                    <dt>Mobile</dt>
-                    <dd>{{ visitor.mobile }}</dd>
+                        <dt>Mobile</dt>
+                        <dd>{{ visitor.mobile }}</dd>
 
-                    <dt>Phone</dt>
-                    <dd>{{ visitor.phone }}</dd>
+                        <dt>Phone</dt>
+                        <dd>{{ visitor.phone }}</dd>
 
-                    <dt>Address</dt>
-                    <dd>{{ visitor.address }} </dd>
+                        <dt>Address</dt>
+                        <dd>{{ visitor.address }} </dd>
 
-                    <dt>Organisation</dt>
-                    <dd>{{ visitor.organisation }}</dd>
+                        <dt>Organisation</dt>
+                        <dd>{{ visitor.organisation }}</dd>
 
-                    <dt>University/Institute</dt>
-                    <dd>{{ visitor.university }}</dd>
+                        <dt>University/Institute</dt>
+                        <dd>{{ visitor.university }}</dd>
 
-                    <dt>Designation</dt>
-                    <dd>{{ visitor.designation }}</dd>
+                        <dt>Designation</dt>
+                        <dd>{{ visitor.designation }}</dd>
 
-                    <dt>Purpose Of Visit</dt>
-                    <dd>{{ visitor.purpose_of_visit }}</dd>
-                </dl>
+                        <dt>Purpose Of Visit</dt>
+                        <dd>{{ visitor.purpose_of_visit }}</dd>
+                    </dl>
+                    <button class="btn btn-danger btn-sm" type="submit" name="delete_user"
+                            value="{{ visitor.pk }}">Delete Visitor</button>
+                </form>
 
             </div>
             <div class="col-md-2">
