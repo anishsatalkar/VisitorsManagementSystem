@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +11,6 @@
 
     <link rel="stylesheet"
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css">
-
-
-
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,20 +29,25 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.17/jquery.datetimepicker.css">
 
 
-
     <style type="text/css">
         html, body {
-            background: darkslategrey;
+            background: white;
             font-family: 'Roboto', sans-serif;
             overflow-x: hidden;
         }
 
         .navbar-default {
-            color: cornflowerblue;
+            color: white;
+        }
+
+        th{
+            color: black;
         }
 
         .navbar {
+            background-color: #F7F7F7;
             text-decoration-color: #ffffff;
+            color: white;
             margin-bottom: 0px;
             box-shadow: 0 2px 2px -2px gray;
         }
@@ -67,23 +70,28 @@
         .navbar-default .navbar-nav > .active > a:hover,
         .navbar-default .navbar-nav > .active > a:focus {
             color: #50A0FF;
-            background-color: #FFFFFF;
         }
 
         .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .open > a {
             background-image: initial;
         }
 
-        .page-footer{
+        .page-footer {
             background-color: #404040;
             padding: 8px;
             color: white;
+            alignment: bottom;
         }
+
+        {#.navbar-default > .container-fluid > .navbar-nav > li > a {#}
+        {#    color: white;#}
+        {#    font-family: Ubuntu, sans-serif;#}
+        {# }#}
 
 
     </style>
 
-    {% load staticfiles %}
+
 </head>
 <body>
 <nav class="navbar navbar-default" style="margin-top: 16px; margin-left: 16px; margin-right: 16px">
@@ -98,11 +106,6 @@ margin-right: 20px">
             <li><a href="{% url 'view_visitors' %}">View</a></li>
         </ul>
         <div class="nav navbar-nav navbar-right">
-            {#            <ul class="dropdown-menu">#}
-            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
-            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
-            {#                <li><a href="{% url 'logout_user' %}">Logout</a></li>#}
-            {#            </ul>#}
             <div class="dropdown" style="padding-top: 8px;margin-right: 16px">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     {% if user %}
