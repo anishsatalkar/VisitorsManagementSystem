@@ -31,7 +31,7 @@
                         <dd>{{ visitor.phone }}</dd>
 
                         <dt>Address</dt>
-                        <dd>{{ visitor.address }} </dd>
+                        <dd>{{ address }} </dd>
 
                         <dt>Organisation</dt>
                         <dd>{{ visitor.organisation }}</dd>
@@ -44,6 +44,9 @@
 
                         <dt>Purpose Of Visit</dt>
                         <dd>{{ visitor.purpose_of_visit }}</dd>
+
+                        <dt>Date and Time of Visit</dt>
+                        <dd>{{ visitor.date_time_of_entry }}</dd>
                     </dl>
                     <button class="btn btn-danger btn-sm" type="submit" name="delete_user"
                             value="{{ visitor.pk }}">Delete Visitor</button>
