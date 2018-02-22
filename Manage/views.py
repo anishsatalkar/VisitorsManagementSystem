@@ -62,10 +62,11 @@ def show_home(request):
 
 def view_visitors(request):
     if request.method == 'POST':
-        if (request.POST.get('delete_user')):
+        if request.POST.get('delete_user'):
             delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
             delete_visitor.delete()
             return render(request, 'view_profile.html', {'success': 'User Deleted'})
+
         else:
             visitor = Visitor.objects.get(pk=request.POST.get('user_name'))
             address = Address.objects.get(visitor=visitor)
@@ -75,4 +76,3 @@ def view_visitors(request):
         visitors = Visitor.objects.all()
         return render(request, 'view_visitors.html', {'visitors': visitors})
 
-    return None

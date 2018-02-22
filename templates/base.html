@@ -36,6 +36,11 @@
             overflow-x: hidden;
         }
 
+        table{
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
         .navbar-default {
             color: white;
         }
@@ -81,11 +86,9 @@
         .page-footer {
             background-color: #404040;
             padding: 8px;
-            margin-top: 190px;
+            margin-top: 300px;
             color: white;
-            {#alignment: bottom;#}
-            {#position: fixed;#}
-            bottom: 0;
+        {#alignment: bottom;#}{#position: fixed;#} bottom: 0;
 
         }
 
@@ -149,7 +152,20 @@ margin-right: 20px">
     {% endblock content %}
 </div>
 <footer class="page-footer">
-    <h5>VIIT Visitors Management System</h5>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 style="display:table-cell;vertical-align: middle">Visitor Management System</h5>
+            </div>
+            <div class="col-md-4">
+                <h5 style="">Vishwakarma Institute Of Information Technology</h5>
+            </div>
+            <div class="col-md-4">
+                <h5>viitdevs@gmail.com</h5>
+            </div>
+        </div>
+    </div>
+
 </footer>
 
 </body>

@@ -9,13 +9,16 @@
 
             </div>
             <div class="col-md-10 central-view">
+
                 <legend style="color: dodgerblue;margin: 24px;">Visitors</legend>
                 {% if visitors.count == 0 %}
                     <h3>No Visitors Added</h3>
                 {% else %}
                     <form action="#" method="post" style="margin: 24px">
                         {% csrf_token %}
-                        <table id="visitor_table" class="display table table-striped table-hover table-bordered" style="background-color:#ffb856;border-radius: 8px">
+
+                        <table id="visitor_table" class="display table table-striped table-hover table-bordered" style="background-color:#ffffff;border-radius: 8px">
+
                             <thead>
                             <tr>
                                 <th>Firstname</th>
@@ -48,6 +51,7 @@
 
 
                             </tbody>
+
                         </table>
                     </form>
                 {% endif %}
@@ -63,7 +67,8 @@
     <script>
         $(document).ready(function () {
             $('#visitor_table').DataTable();
-        });
+
+         });
 
     </script>
 

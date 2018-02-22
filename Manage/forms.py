@@ -21,8 +21,8 @@ class VisitorForm(ModelForm):
         self.fields['middle_name'].widget.attrs.update(
             {'pattern': '^[a-zA-Z ]*$', 'onkeypress': 'return isAlphabet(event)'})
 
-        self.fields['mobile'].widget.attrs.update({'pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
-        self.fields['phone'].widget.attrs.update({'pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
+        self.fields['mobile'].widget.attrs.update({'id':'mobile_field','pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
+        self.fields['phone'].widget.attrs.update({'id':'phone_field','pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
 
         # self.fields['date_time_of_entry'].widget.attrs.update({'pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
 

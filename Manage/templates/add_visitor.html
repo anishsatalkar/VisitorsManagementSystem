@@ -32,13 +32,13 @@
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.mobile.label_tag }}</label>
-                            <span class="error" id="middle_name_error">{{ form.mobile.errors }}</span>
-                            <div class="">{{ form.mobile }}</div>
+                            <span class="alert-danger" id="mobile_error">{{ form.mobile.errors }}</span>
+                            {{ form.mobile }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.phone.label_tag }}</label>
-                            <span class="error" id="last_name_error">{{ form.phone.errors }}</span>
-                            <div class="">{{ form.phone }}</div>
+                            <span class="alert-danger" id="phone_error">{{ form.phone.errors }}</span>
+                            {{ form.phone }}
                         </div>
                     </div>
                     <div class="row" style="margin: 24px">
@@ -61,8 +61,8 @@
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
                             <label>Date and Time of visitor's entry (Year-Month-Day)<label
-                            <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
-                            {{ form.date_time_of_entry }}
+                                <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
+                                {{ form.date_time_of_entry }}
                         </div>
                     </div>
 
@@ -110,8 +110,12 @@
                             {{ form.purpose_of_visit }}
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin:0 auto;
-    display:block;margin-bottom: 64px;">Submit
+
+                    <span class="alert-danger" id="form_error_message" style="margin:0 auto;
+    display:block;"></span>
+                    <button type="submit" onclick="return validate()" class="btn btn-primary" style="margin:0 auto;
+    display:block;margin-bottom: 64px;">
+                        Submit
                     </button>
 
 
@@ -124,6 +128,31 @@
 
     </div>
     <script>
+        function validate() {
+
+            var mobile = document.getElementById('mobile_field').value;
+            var phone = document.getElementById('phone_field').value;
+            var mobile_error = document.getElementById('mobile_error');
+            var phone_error = document.getElementById('phone_error');
+            var form_error_message = document.getElementById('form_error_message');
+            var flag = 0;
+            if (mobile.toString().length !== 10) {
+                mobile_error.innerText = "Mobile number should be 10 digits wide.";
+                flag = 1;
+            }
+            if (phone.toString().length !== 8) {
+                phone_error.innerText = "Phone number should be 8 digits wide.";
+                flag = 1;
+                {#return false;#}
+            }
+            if(flag === 0)
+                return true;
+            else{
+                form_error_message.innerText = "Form not submitted. It contains errors.";
+                return false;
+            }
+        }
+
         function isAlphabet(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;

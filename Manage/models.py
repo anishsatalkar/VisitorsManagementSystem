@@ -34,9 +34,10 @@ class Address(models.Model):
     state = models.CharField(max_length=50)
     country = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.building + " " + str(
-            self.pin_code) + " " + self.street + " " + self.city + " " + self.state + " " + self.country
+    # def __str__(self):
+    #     return self.building + " " + self.street + " " + self.city + " " + self.state + " " + self.country + " " + str(self.pin_code)
+               # + " " + str(
+            # self.pin_code) + " " + self.street + " " + self.city + " " + self.state + " " + self.country
 
 
 class Log(models.Model):
