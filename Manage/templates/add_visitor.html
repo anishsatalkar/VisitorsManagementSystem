@@ -30,9 +30,10 @@
                             <span class="error" id="first_name_error">{{ form.email.errors }}</span>
                             <div class="">{{ form.email }}</div>
                         </div>
+
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.mobile.label_tag }}</label>
-                            <span class="alert-danger" id="mobile_error">{{ form.mobile.errors }}</span>
+                            <span id="mobile_error">{{ form.mobile.errors }}</span>
                             {{ form.mobile }}
                         </div>
                         <div class="form-element col-md-4">
@@ -78,8 +79,8 @@
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.pin_code.label_tag }}</label>
-                            <span class="error" id="middle_name_error">{{ address_form.pin_code.errors }}</span>
-                            <div class="">{{ address_form.pin_code }}</div>
+                            <span class="alert-danger" id="pin_code_error">{{ address_form.pin_code.errors }}</span>
+                            {{ address_form.pin_code }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.street.label_tag }}</label>
@@ -129,25 +130,31 @@
     </div>
     <script>
         function validate() {
-
             var mobile = document.getElementById('mobile_field').value;
             var phone = document.getElementById('phone_field').value;
             var mobile_error = document.getElementById('mobile_error');
+            var pin_code = document.getElementById('pin_code_field').value;
+            var pin_code_error = document.getElementById('pin_code_error');
             var phone_error = document.getElementById('phone_error');
             var form_error_message = document.getElementById('form_error_message');
             var flag = 0;
-            if (mobile.toString().length !== 10) {
-                mobile_error.innerText = "Mobile number should be 10 digits wide.";
-                flag = 1;
-            }
+            {#if (mobile.toString().length !== 10) {#}
+            {#    mobile_error.innerText = "Mobile number should be 10 digits wide.";#}
+            {#    flag = 1;#}
+            {# }#}
             if (phone.toString().length !== 8) {
                 phone_error.innerText = "Phone number should be 8 digits wide.";
                 flag = 1;
-                {#return false;#}
             }
-            if(flag === 0)
+            if (pin_code.toString().length !== 6) {
+                pin_code_error.innerText = "Pin code should be 6 digits wide";
+                flag = 1;
+            }else{
+                pin_code_error.innerText = "";
+            }
+            if (flag === 0)
                 return true;
-            else{
+            else {
                 form_error_message.innerText = "Form not submitted. It contains errors.";
                 return false;
             }
@@ -171,13 +178,18 @@
             var datenow = new Date();
             $("#datepicker1").datetimepicker({
                 format: 'Y-m-d H:i:s',
-                {#defaultDate: datenow#}
-
             });
         });
 
+        $(document).ready(function () {
+            var mobile_err = document.getElementById("mobile_error");
+            $('#mobile_field').keypress(function () {
+                var mobile = document.getElementById("mobile_field").value;
+                mobile_err.style.color = "green";
 
+                mobile_err.innerText = mobile.toString().length+1;
+            })
+
+        });
     </script>
-
-
 {% endblock content %}

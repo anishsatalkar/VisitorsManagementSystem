@@ -31,6 +31,7 @@
 
     <style type="text/css">
         html, body {
+
             background: white;
             font-family: 'Roboto', sans-serif;
             overflow-x: hidden;
@@ -84,11 +85,16 @@
         }
 
         .page-footer {
+            {#position: absolute;#}
+            {#bottom: 0px;#}
+            width: 100%;
             background-color: #404040;
             padding: 8px;
-            margin-top: 300px;
+            {#margin-top: 300px;#}
             color: white;
-        {#alignment: bottom;#}{#position: fixed;#} bottom: 0;
+        {#alignment: bottom;#}{#position: fixed;#}
+            bottom: 0;
+
 
         }
 
@@ -111,8 +117,8 @@
 margin-right: 20px">
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="{% url 'add_visitor' %}">Add Visitor</a></li>
-            <li><a href="{% url 'view_visitors' %}">View</a></li>
+            <li><a href="{% url 'Manage:add_visitor' %}">Add Visitor</a></li>
+            <li><a href="{% url 'Manage:view_visitors' %}">View</a></li>
         </ul>
         <div class="nav navbar-nav navbar-right">
             <div class="dropdown" style="padding-top: 8px;margin-right: 16px">

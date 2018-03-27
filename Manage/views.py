@@ -1,18 +1,14 @@
 import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-import xlsxwriter
 from Manage.models import Log
 
 from Manage.forms import VisitorForm, AddressForm
 from Manage.models import Visitor, Address
 
-
-# def create_excel(request):
-# workbook = xlsxwriter.Workbook('Visitors.xlsx')
-# worksheet
-
-
+@login_required(login_url='/')
 def add_visitor(request):
     if request.method == 'GET':
         return render(request, 'add_visitor.html', {'form': VisitorForm(),
@@ -60,19 +56,20 @@ def show_home(request):
     return None
 
 
+@login_required(login_url='/')
 def view_visitors(request):
     if request.method == 'POST':
-        if request.POST.get('delete_user'):
-            delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
-            delete_visitor.delete()
-            return render(request, 'view_profile.html', {'success': 'User Deleted'})
-
-        else:
-            visitor = Visitor.objects.get(pk=request.POST.get('user_name'))
-            address = Address.objects.get(visitor=visitor)
-            return render(request, 'view_profile.html', {'visitor': visitor,
-                                                         'address': address})
+        visitor = Visitor.objects.get(pk=request.POST.get('user_name'))
+        address = Address.objects.get(visitor=visitor)
+        return render(request, 'view_profile.html', {'visitor': visitor,
+                                                     'address': address})
     if request.method == 'GET':
         visitors = Visitor.objects.all()
         return render(request, 'view_visitors.html', {'visitors': visitors})
 
+
+def delete_visitor(request):
+    if request.method == 'POST':
+        delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
+        delete_visitor.delete()
+        return render(request, 'view_profile.html', {'success': 'User Deleted'})

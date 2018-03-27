@@ -1,6 +1,7 @@
-from django.forms import ModelForm, Textarea, DateTimeInput, forms, DateInput
+from django.forms import ModelForm, Textarea, DateTimeInput, forms, DateInput, Select
 from django import forms
-
+from phone_iso3166.network import *
+import pycountry
 from Manage.models import Visitor, Address
 
 
@@ -9,32 +10,40 @@ class DateInputOne(forms.DateTimeInput):
 
 
 class VisitorForm(ModelForm):
+    model = Visitor
+    # CHOICES = [(str(i) , str(i.alpha_2)) for i in pycountry.countries]
+    # country_code = forms.ChoiceField(choices=CHOICES)
     def __init__(self, *args, **kwargs):
         super(VisitorForm, self).__init__(*args, **kwargs)
+
         for field in self.fields:
             self.fields[field].widget.attrs.update({'class': 'form-control'})
 
         self.fields['first_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$', 'onkeypress': 'return isAlphabet(event)'})
+            {'pattern': '^[a-zA-Z ]*$' , 'id' : 'first_name_field'})
         self.fields['last_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$', 'onkeypress': 'return isAlphabet(event)'})
+            {'pattern': '^[a-zA-Z ]*$'})
         self.fields['middle_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$', 'onkeypress': 'return isAlphabet(event)'})
+            {'pattern': '^[a-zA-Z ]*$'})
 
-        self.fields['mobile'].widget.attrs.update({'id':'mobile_field','pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
-        self.fields['phone'].widget.attrs.update({'id':'phone_field','pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
-
-        # self.fields['date_time_of_entry'].widget.attrs.update({'pattern': '^[a-zA-Z+]*$', 'onkeypress': 'return isNumber(event)'})
+        #,'pattern': '^[a-zA-Z+]*$'
+        self.fields['mobile'].widget.attrs.update({'id':'mobile_field','onkeypress': 'return isNumber(event)'})
+        self.fields['phone'].widget.attrs.update({'id':'phone_field','onkeypress': 'return isNumber(event)'})
 
     class Meta:
+
         model = Visitor
+
         widgets = {
+
+            # 'country_code' : Select(attrs={'class':'form-control'}),
+
             'purpose_of_visit': Textarea(attrs={'cols': '10', 'rows': '5'}),
-            # 'begin_start_date': DateTimeInput(format='DATETIME_FORMAT', attrs={
-            #     'id': 'dateField', 'class': 'form-control date'}),
+
             'date_time_of_entry': DateTimeInput(attrs={'id':'datepicker1','class':'date'})
         }
         fields = '__all__'
+
 
 
 class AddressForm(ModelForm):
@@ -42,7 +51,7 @@ class AddressForm(ModelForm):
         super(AddressForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs.update({'class': 'form-control'})
-        self.fields['pin_code'].widget.attrs.update({'pattern': '^[a-zA-Z]*$', 'onkeypress': 'return isNumber(event)'})
+        self.fields['pin_code'].widget.attrs.update({'id':'pin_code_field','pattern': '^[a-zA-Z]*$', 'onkeypress': 'return isNumber(event)'})
 
     class Meta:
         model = Address

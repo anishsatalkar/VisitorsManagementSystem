@@ -9,8 +9,8 @@ class Visitor(models.Model):
     last_name = models.CharField(max_length=70)
 
     email = models.EmailField()
-    mobile = models.BigIntegerField()
-    phone = models.BigIntegerField(null=True, blank=True)
+    mobile = models.CharField(max_length=15,blank=True,null=True)
+    phone = models.CharField(max_length=15,blank=True,null=True)
     # address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True, null=True)
 
     organisation = models.CharField(max_length=250, blank=True, null=True)

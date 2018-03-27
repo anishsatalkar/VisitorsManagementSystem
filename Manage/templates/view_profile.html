@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-8 central-view">
                 <legend style="color: cornflowerblue">Visitor Profile</legend>
-                <form action="#" method="post">
+                <form action="{% url 'Manage:delete_visitor' %}" method="post">
                     {% csrf_token %}
                     <dl class="dl-horizontal">
 
