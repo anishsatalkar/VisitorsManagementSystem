@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+{#{% block style %}#}
+{#    <style type="text/css">#}
+{#    .iti-flag {background-image: {% static "flags.png" %};}#}
+{#    </style>#}
+{#{% endblock style %}#}
 {% block content %}
     <div class="container-fluid"
          style="margin-top:24px;padding-top: 8px;padding-bottom: 64px;">
@@ -30,8 +36,13 @@
                             <span class="error" id="first_name_error">{{ form.email.errors }}</span>
                             <div class="">{{ form.email }}</div>
                         </div>
+                        <div class="form-element col-md-2">
+                            <label class="control-label">{{ form.country_code.label_tag }}</label>
+                            <span class="error" id="first_name_error">{{ form.country_code.errors }}</span>
+                            {{ form.country_code }}
+                        </div>
 
-                        <div class="form-element col-md-4">
+                        <div class="form-element col-md-2">
                             <label class="control-label">{{ form.mobile.label_tag }}</label>
                             <span id="mobile_error">{{ form.mobile.errors }}</span>
                             {{ form.mobile }}
@@ -46,22 +57,22 @@
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.organisation.label_tag }}</label>
                             <span class="error" id="first_name_error">{{ form.organisation.errors }}</span>
-                            <div class="">{{ form.organisation }}</div>
+                            {{ form.organisation }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.university.label_tag }}</label>
                             <span class="error" id="middle_name_error">{{ form.university.errors }}</span>
-                            <div class="">{{ form.university }}</div>
+                            {{ form.university }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.designation.label_tag }}</label>
                             <span class="error" id="last_name_error">{{ form.designation.errors }}</span>
-                            <div class="">{{ form.designation }}</div>
+                            {{ form.designation }}
                         </div>
                     </div>
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
-                            <label>Date and Time of visitor's entry (Year-Month-Day)<label
+                            <label>Date and Time of visitor's entry (Year-Month-Day)</label>
                                 <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
                                 {{ form.date_time_of_entry }}
                         </div>
@@ -75,7 +86,7 @@
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.building.label_tag }}</label>
                             <span class="error" id="first_name_error">{{ address_form.building.errors }}</span>
-                            <div class="">{{ address_form.building }}</div>
+                            {{ address_form.building }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.pin_code.label_tag }}</label>
