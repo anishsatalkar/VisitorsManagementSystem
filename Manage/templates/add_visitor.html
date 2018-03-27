@@ -188,18 +188,17 @@
         $(function () {
             var datenow = new Date();
             $("#datepicker1").datetimepicker({
-                format: 'Y-m-d H:i:s',
+                format: 'Y-m-d H:i:s'
             });
         });
 
         $(document).ready(function () {
-            var mobile_err = document.getElementById("mobile_error");
-            $('#mobile_field').keypress(function () {
-                var mobile = document.getElementById("mobile_field").value;
-                mobile_err.style.color = "green";
-
-                mobile_err.innerText = mobile.toString().length+1;
-            })
+{#            var mobile_err = document.getElementById("mobile_error");#}
+{#            $('#mobile_field').keypress(function () {#}
+{#                var mobile = document.getElementById("mobile_field").value;#}
+{#                mobile_err.style.color = "green";#}
+{#                mobile_err.innerText = mobile.toString().length+1;#}
+{#            })#}
 
         });
     </script>

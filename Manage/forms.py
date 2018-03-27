@@ -14,7 +14,7 @@ class VisitorForm(ModelForm):
     for i in range(0, len(from_json['countries'])):
         # pprint(from_json['countries'][i])
         # print((str(from_json['countries'][i]['name']), from_json['countries'][i]['code']))
-        CHOICES.append((str(from_json['countries'][i]['code']), (str(from_json['countries'][i]['full'])+" "+from_json['countries'][i]['code'])))
+        CHOICES.append((str('+'+from_json['countries'][i]['code']), (str(from_json['countries'][i]['full'])+" +"+from_json['countries'][i]['code'])))
 
     print(CHOICES)
     country_code = forms.ChoiceField(choices=CHOICES)

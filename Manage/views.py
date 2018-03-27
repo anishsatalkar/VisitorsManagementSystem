@@ -19,11 +19,14 @@ def add_visitor(request):
         if address_form.is_valid() and visitor_form.is_valid():
             print('form valid')
 
+            country_code = request.POST['country_code']
+            mobile_no = visitor_form.cleaned_data.get('mobile')
+            mobile_no = country_code + '-'+ mobile_no
             visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
                                                  middle_name=visitor_form.cleaned_data.get('middle_name'),
                                                  last_name=visitor_form.cleaned_data.get('last_name'),
                                                  email=visitor_form.cleaned_data.get('email'),
-                                                 mobile=visitor_form.cleaned_data.get('mobile'),
+                                                 mobile=mobile_no,
                                                  phone=visitor_form.cleaned_data.get('phone'),
                                                  organisation=visitor_form.cleaned_data.get('organisation'),
                                                  university=visitor_form.cleaned_data.get('university'),
@@ -70,6 +73,11 @@ def view_visitors(request):
 
 def delete_visitor(request):
     if request.method == 'POST':
-        delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
-        delete_visitor.delete()
-        return render(request, 'view_profile.html', {'success': 'User Deleted'})
+        if request.POST['delete_visitor']:
+            delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
+            delete_visitor.delete()
+            return render(request, 'view_profile.html', {'success': 'User Deleted'})
+        elif request.POST['edit_user']:
+            edit_visitor = Visitor.objects.get(pk=request.POST.get('edit_user'))
+            return render(request, 'add_visitor.html' , {'asd':'asd'})
+        # return HttpResponse('hmm')
