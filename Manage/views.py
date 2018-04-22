@@ -3,26 +3,55 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from Manage.models import Log
 
 from Manage.forms import VisitorForm, AddressForm
 from Manage.models import Visitor, Address
 
+
 @login_required(login_url='/')
 def add_visitor(request):
     if request.method == 'GET':
-        return render(request, 'add_visitor.html', {'form': VisitorForm(),
-                                                    'address_form': AddressForm()})
+        return render(request, 'add_visitor.html', {'form': VisitorForm,
+                                                    'address_form': AddressForm})
     if request.method == 'POST':
         address_form = AddressForm(request.POST)
         visitor_form = VisitorForm(request.POST)
+        # if visitor_form.cleaned_data.get('present_id'):
+        #     print('editing')
         if address_form.is_valid() and visitor_form.is_valid():
             print('form valid')
 
             country_code = request.POST['country_code']
             mobile_no = visitor_form.cleaned_data.get('mobile')
-            mobile_no = country_code + '-'+ mobile_no
-            visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
+            mobile_no = country_code + '-' + mobile_no
+
+            if request.POST.get('edit_id'):
+                visitor_id = request.POST.get('edit_id')
+                visitor_obj = Visitor.objects.get(pk=visitor_id)
+
+                visitor_obj.first_name = visitor_form.cleaned_data.get('first_name')
+                visitor_obj.middle_name = visitor_form.cleaned_data.get('middle_name')
+                visitor_obj.last_name = visitor_form.cleaned_data.get('last_name')
+                visitor_obj.email = visitor_form.cleaned_data.get('email')
+                visitor_obj.mobile = mobile_no
+                visitor_obj.phone = visitor_form.cleaned_data.get('phone')
+                visitor_obj.organisation = visitor_form.cleaned_data.get('organisation')
+                visitor_obj.university = visitor_form.cleaned_data.get('university')
+                visitor_obj.designation = visitor_form.cleaned_data.get('designation')
+                visitor_obj.purpose_of_visit = visitor_form.cleaned_data.get('purpose_of_visit')
+                visitor_obj.save()
+
+                address = Address.objects.get(visitor=visitor_obj)
+                address.building = address_form.cleaned_data.get('building')
+                address.pin_code = address_form.cleaned_data.get('pin_code')
+                address.street = address_form.cleaned_data.get('street')
+                address.city = address_form.cleaned_data.get('city')
+                address.state = address_form.cleaned_data.get('state')
+                address.country = address_form.cleaned_data.get('country')
+                address.save()
+
+            else:
+                visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
                                                  middle_name=visitor_form.cleaned_data.get('middle_name'),
                                                  last_name=visitor_form.cleaned_data.get('last_name'),
                                                  email=visitor_form.cleaned_data.get('email'),
@@ -33,7 +62,7 @@ def add_visitor(request):
                                                  designation=visitor_form.cleaned_data.get('designation'),
                                                  purpose_of_visit=visitor_form.cleaned_data.get('purpose_of_visit'))
 
-            address_obj = Address.objects.create(building=address_form.cleaned_data.get('building'),
+                address_obj = Address.objects.create(building=address_form.cleaned_data.get('building'),
                                                  pin_code=address_form.cleaned_data.get('pin_code'),
                                                  street=address_form.cleaned_data.get('street'),
                                                  city=address_form.cleaned_data.get('city'),
@@ -42,12 +71,11 @@ def add_visitor(request):
                                                  visitor=visitor_obj)
 
             visitor_name = visitor_obj.first_name + " " + visitor_obj.last_name
-            log_obj = Log.objects.create(visitor=visitor_name,
-                                         date_time_of_entry=datetime.datetime.now())
+            # log_obj = Log.objects.create(visitor=visitor_name,
+            #                              date_time_of_entry=datetime.datetime.now())
 
-            # visitor_obj.save()
-            return render(request, 'add_visitor.html', {'form': VisitorForm,
-                                                        'address_form': AddressForm,
+            return render(request, 'add_visitor.html', {'form': VisitorForm(""),
+                                                        'address_form': AddressForm(""),
                                                         'success': 'Visitor Added Successfully'})
         else:
             return HttpResponse('Form Invalid')
@@ -73,11 +101,36 @@ def view_visitors(request):
 
 def delete_visitor(request):
     if request.method == 'POST':
-        if request.POST['delete_visitor']:
-            delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
-            delete_visitor.delete()
+        if request.POST.get('delete_user'):
+            delete_vis = Visitor.objects.get(pk=request.POST.get('delete_user'))
+            delete_vis.delete()
             return render(request, 'view_profile.html', {'success': 'User Deleted'})
-        elif request.POST['edit_user']:
-            edit_visitor = Visitor.objects.get(pk=request.POST.get('edit_user'))
-            return render(request, 'add_visitor.html' , {'asd':'asd'})
-        # return HttpResponse('hmm')
+        elif request.POST.get('edit_user'):
+            return render(request, 'add_visitor.html', {'form': VisitorForm(request.POST.get('edit_user')),
+                                                        'present_id': request.POST.get('edit_user'),
+                                                        'address_form': AddressForm(request.POST.get('edit_user'))})
+    elif request.method == 'GET':
+        return HttpResponse('Get')
+
+
+def search_visitor(request):
+    query = request.POST.get('query')
+    visitors = Visitor.objects.filter(organisation__icontains=query)
+    if not visitors:
+        visitors = Visitor.objects.filter(university__icontains=query)
+    print(visitors)
+    return render(request, 'view_visitors.html', {'returned_visitors': visitors})
+    # return HttpResponse('searched')
+
+
+def edit_visitor(request):
+    if request.method == 'POST':
+        visitor_pk = request.POST.get('pk')
+        visitor = Visitor.objects.get(pk=visitor_pk)
+        address = Address.objects.get(visitor=visitor)
+        # return HttpResponse(visitor)
+        return render(request, 'add_visitor.html', {'form': VisitorForm(instance=visitor),
+                                                    'address_form': AddressForm(instance=address),
+                                                    'present_id' : visitor_pk})
+    else:
+        return HttpResponse('Get')

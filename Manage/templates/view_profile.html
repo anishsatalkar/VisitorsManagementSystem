@@ -48,22 +48,21 @@
                         <dt>Date and Time of Visit</dt>
                         <dd>{{ visitor.date_time_of_entry }}</dd>
                     </dl>
-                    <button class="btn btn-danger btn-sm" type="submit" name="delete_user"
+                    <button style="margin: 8px;" class="btn btn-danger btn-sm" type="submit" name="delete_user"
                             value="{{ visitor.pk }}">Delete Visitor</button>
 {#                    <button class="btn btn-info btn-sm" type="submit" name="edit_user"#}
 {#                            value="{{ visitor.pk }}">Edit</button>#}
+
+                </form>
+                <form action="{% url 'Manage:edit_visitor' %}" method="POST">
+                    {% csrf_token %}
+                    <button style="margin: 8px;" class="btn btn-info btn-sm" name="pk" type="submit"
+                            value="{{ visitor.pk }}">Edit Info</button>
                 </form>
 
             </div>
             <div class="col-md-2">
             </div>
         </div>
-
     </div>
-
-
-
-
-
-
 {% endblock content %}
