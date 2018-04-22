@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </form>
-{#                        <label class="alert alert-success">Found {{ returned_visitors.count }} visitors</label>#}
+                        {#                        <label class="alert alert-success">Found {{ returned_visitors.count }} visitors</label>#}
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">Found {{ returned_visitors.count }} visitor(s)</span>
                         <form action="#" method="post" style="margin: 24px">
@@ -46,7 +46,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
                                 {% for visitor in returned_visitors %}
                                     <tr>
                                         <td>
@@ -68,13 +67,12 @@
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">No Visitors Found</span>
                     {% endif %}
-
                 {% else %}
                     <form action="{% url 'Manage:search_visitor' %}" method="POST">
                         {% csrf_token %}
                         <div class="container-fluid">
                             <div class="input-group" style="width: 50%; margin: auto; display: flex;">
-                                <input type="text" class="form-control" name="query"
+                                <input id="query_field_id" type="text" class="form-control" name="query"
                                        placeholder="Search by Organisation / University">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
@@ -105,8 +103,6 @@
                             <tbody>
 
                             {% for visitor in visitors %}
-
-                                {#                        data-toggle="collapse" data-target=".{{ forloop.counter }}"#}
                                 <tr>
                                     <td>
                                         <button class="btn btn-primary btn-sm" type="submit" name="user_name"
@@ -120,30 +116,29 @@
                                     <td>{{ visitor.purpose_of_visit }}</td>
                                 </tr>
                             {% endfor %}
-
-
                             </tbody>
-
                         </table>
                     </form>
                 {% endif %}
-
             </div>
             <div class="col-md-1">
-
             </div>
         </div>
-
     </div>
-
     <script>
         {#$(document).ready(function () {#}
         {#    $('#visitor_table').DataTable();#}
         {##}
         {# });#}
 
+        $('document').ready(function () {
+            $('#query_field_id').onkeyup(function () {
+                $.get("/home/search_visitor/", {query : 'hello'}, function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+
+            })
+        })
+
     </script>
-
-
-
 {% endblock content %}

@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be49f1b4-7d57-4378-a526-14e2dc2cf0b8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/VisitorsManagement.iml" afterPath="$PROJECT_DIR$/.idea/VisitorsManagement.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Login/templates/login.html" afterPath="$PROJECT_DIR$/Login/templates/login.html" />
-      <change beforePath="$PROJECT_DIR$/Login/urls.py" afterPath="$PROJECT_DIR$/Login/urls.py" />
-      <change beforePath="$PROJECT_DIR$/Manage/admin.py" afterPath="$PROJECT_DIR$/Manage/admin.py" />
-      <change beforePath="$PROJECT_DIR$/Manage/forms.py" afterPath="$PROJECT_DIR$/Manage/forms.py" />
-      <change beforePath="$PROJECT_DIR$/Manage/models.py" afterPath="$PROJECT_DIR$/Manage/models.py" />
-      <change beforePath="$PROJECT_DIR$/Manage/templates/add_visitor.html" afterPath="$PROJECT_DIR$/Manage/templates/add_visitor.html" />
-      <change beforePath="$PROJECT_DIR$/Manage/templates/view_profile.html" afterPath="$PROJECT_DIR$/Manage/templates/view_profile.html" />
       <change beforePath="$PROJECT_DIR$/Manage/templates/view_visitors.html" afterPath="$PROJECT_DIR$/Manage/templates/view_visitors.html" />
-      <change beforePath="$PROJECT_DIR$/Manage/urls.py" afterPath="$PROJECT_DIR$/Manage/urls.py" />
       <change beforePath="$PROJECT_DIR$/Manage/views.py" afterPath="$PROJECT_DIR$/Manage/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,9 +34,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Manage/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-352">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="231">
+              <caret line="122" column="20" lean-forward="false" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_visitors.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="view_visitors.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Manage/templates/view_visitors.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1232">
-              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state relative-caret-position="-1286">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#legend#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -85,7 +77,7 @@
       <file leaf-file-name="add_visitor.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Manage/templates/add_visitor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2097">
+            <state relative-caret-position="183">
               <caret line="127" column="76" lean-forward="false" selection-start-line="127" selection-start-column="76" selection-end-line="127" selection-end-column="76" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -121,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="165" column="106" lean-forward="true" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
+              <caret line="165" column="106" lean-forward="false" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -190,16 +182,16 @@
         <option value="$PROJECT_DIR$/VisitorsManagement/urls.py" />
         <option value="$PROJECT_DIR$/Login/views.py" />
         <option value="$PROJECT_DIR$/Login/urls.py" />
-        <option value="$PROJECT_DIR$/Manage/templates/view_visitors.html" />
         <option value="$PROJECT_DIR$/Manage/urls.py" />
         <option value="$PROJECT_DIR$/Manage/forms.py" />
         <option value="$PROJECT_DIR$/Manage/templates/add_visitor.html" />
         <option value="$PROJECT_DIR$/Manage/templates/view_profile.html" />
         <option value="$PROJECT_DIR$/Manage/models.py" />
         <option value="$PROJECT_DIR$/Manage/admin.py" />
-        <option value="$PROJECT_DIR$/Manage/views.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/Login/templates/login.html" />
+        <option value="$PROJECT_DIR$/Manage/views.py" />
+        <option value="$PROJECT_DIR$/Manage/templates/view_visitors.html" />
       </list>
     </option>
   </component>
@@ -468,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524427768287</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Login UI">
+      <created>1524430418482</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1524430418482</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -476,8 +475,8 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34168565" sideWeight="0.53713673" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34168565" sideWeight="0.4628633" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34168565" sideWeight="0.53928953" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34168565" sideWeight="0.46071044" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.4980304" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39787486" sideWeight="0.5151515" order="7" side_tool="true" content_ui="tabs" />
@@ -486,7 +485,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993776" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993776" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39749432" sideWeight="0.4881593" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39749432" sideWeight="0.48600647" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -539,7 +538,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/anishsatalkar/VisitorsManagementSystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;db.sqlite3&#10;&#10;Search functionality." />
     <MESSAGE value="Merge branch 'master' of https://github.com/anishsatalkar/VisitorsManagementSystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;db.sqlite3" />
     <MESSAGE value="Search &#10;Edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Search &#10;Edit" />
+    <MESSAGE value="Login UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -556,101 +556,46 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>102</line>
+          <line>100</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>106</line>
+          <line>104</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>108</line>
+          <line>106</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>112</line>
+          <line>110</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="72" />
+          <line>123</line>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>76</line>
-          <option name="timeStamp" value="73" />
+          <line>128</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>80</line>
-          <option name="timeStamp" value="74" />
+          <line>122</line>
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>38</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>68</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>28</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Manage/views.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="96" />
+          <line>114</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="97" />
+      <option name="time" value="101" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -969,7 +914,7 @@
         <state relative-caret-position="2970">
           <caret line="135" column="34" lean-forward="false" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
           <folding>
-            <element signature="e#0#85#0" expanded="true" />
+            <element signature="e#0#85#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -979,48 +924,6 @@
         <state relative-caret-position="418">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Manage/templates/view_visitors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#legend#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Manage/templates/add_visitor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2097">
-          <caret line="127" column="76" lean-forward="false" selection-start-line="127" selection-start-column="76" selection-end-line="127" selection-end-column="76" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Manage/templates/view_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="59" column="62" lean-forward="false" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
-          <folding>
-            <element signature="e#89#152#0#HTML" expanded="true" />
-            <element signature="e#1822#1842#0#HTML" expanded="true" />
-            <element signature="e#2313#2333#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1041,22 +944,6 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Manage/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Manage/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-352">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,8 +973,68 @@
     <entry file="file://$PROJECT_DIR$/Login/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="165" column="106" lean-forward="true" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
+          <caret line="165" column="106" lean-forward="false" selection-start-line="165" selection-start-column="106" selection-end-line="165" selection-end-column="106" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Manage/templates/add_visitor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="127" column="76" lean-forward="false" selection-start-line="127" selection-start-column="76" selection-end-line="127" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Manage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="122" column="20" lean-forward="false" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Manage/templates/view_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="59" column="62" lean-forward="false" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
+          <folding>
+            <element signature="e#89#152#0#HTML" expanded="true" />
+            <element signature="e#1822#1842#0#HTML" expanded="true" />
+            <element signature="e#2313#2333#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Manage/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Manage/templates/view_visitors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1286">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#legend#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#form#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

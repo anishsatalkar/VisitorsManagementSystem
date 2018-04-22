@@ -16,8 +16,6 @@ def add_visitor(request):
     if request.method == 'POST':
         address_form = AddressForm(request.POST)
         visitor_form = VisitorForm(request.POST)
-        # if visitor_form.cleaned_data.get('present_id'):
-        #     print('editing')
         if address_form.is_valid() and visitor_form.is_valid():
             print('form valid')
 
@@ -74,8 +72,8 @@ def add_visitor(request):
             # log_obj = Log.objects.create(visitor=visitor_name,
             #                              date_time_of_entry=datetime.datetime.now())
 
-            return render(request, 'add_visitor.html', {'form': VisitorForm(""),
-                                                        'address_form': AddressForm(""),
+            return render(request, 'add_visitor.html', {'form': VisitorForm,
+                                                        'address_form': AddressForm,
                                                         'success': 'Visitor Added Successfully'})
         else:
             return HttpResponse('Form Invalid')
@@ -114,13 +112,24 @@ def delete_visitor(request):
 
 
 def search_visitor(request):
-    query = request.POST.get('query')
-    visitors = Visitor.objects.filter(organisation__icontains=query)
-    if not visitors:
-        visitors = Visitor.objects.filter(university__icontains=query)
-    print(visitors)
-    return render(request, 'view_visitors.html', {'returned_visitors': visitors})
-    # return HttpResponse('searched')
+    if request.method == "POST":
+        query = request.POST.get('query')
+        visitors = Visitor.objects.filter(organisation__icontains=query)
+        if not visitors:
+            visitors = Visitor.objects.filter(university__icontains=query)
+        print(visitors)
+        return render(request, 'view_visitors.html', {'returned_visitors': visitors})
+    else:
+        print('10000')
+        query = request.GET.get('query')
+        visitors = Visitor.objects.filter(organisation__icontains=query)
+        if not visitors:
+            visitors = Visitor.objects.filter(university__icontains=query)
+        # print(visitors)
+        if len(visitors) > 0:
+            return HttpResponse(visitors[0].first_name)
+        else:
+            return HttpResponse('No match')
 
 
 def edit_visitor(request):
