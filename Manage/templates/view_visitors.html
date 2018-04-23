@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{#{% block style %}#}
 
+{#{% endblock style %}#}
+
+{% block content %}
     <div class="container-fluid"
          style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;">
         <div class="row">
@@ -15,7 +18,7 @@
                     {% if returned_visitors %}
                         <form action="{% url 'Manage:search_visitor' %}" method="POST">
                             {% csrf_token %}
-                            <div class="container-fluid">
+                            <div class="row">
                                 <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                     <input type="text" class="form-control" name="query"
                                            placeholder="Search by Organisation / University">
@@ -24,12 +27,16 @@
                                 </span>
                                 </div>
                             </div>
+
                         </form>
+
+
                         {#                        <label class="alert alert-success">Found {{ returned_visitors.count }} visitors</label>#}
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">Found {{ returned_visitors.count }} visitor(s)</span>
                         <form action="#" method="post" style="margin: 24px">
                             {% csrf_token %}
+
 
                             <table id="visitor_table" class="display table table-striped table-hover table-bordered"
                                    style="background-color:#ffffff;border-radius: 8px">
@@ -70,15 +77,20 @@
                 {% else %}
                     <form action="{% url 'Manage:search_visitor' %}" method="POST">
                         {% csrf_token %}
-                        <div class="container-fluid">
+                        <div class="row">
                             <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                 <input id="query_field_id" type="text" class="form-control" name="query"
                                        placeholder="Search by Organisation / University">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
+{#                                <label>#}
+{#                                    <input type="checkbox" name="india">Outside India#}
+{#                                </label>#}
                             </div>
+
                         </div>
+
                     </form>
 
 
@@ -132,13 +144,18 @@
         {# });#}
 
         $('document').ready(function () {
-            $('#query_field_id').onkeyup(function () {
-                $.get("/home/search_visitor/", {query : 'hello'}, function (data, status) {
-                    alert("Data: " + data + "\nStatus: " + status);
+            $('#query_field_id').keyup(function () {
+                $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {
+                    {#alert("Data: " + data + "\nStatus: " + status);#}
+                    $('#query_field_id').style.placeholder = data;
                 });
 
-            })
-        })
+            });
+        });
+
+        {#function search() {#}
+        {#    #}
+        {# }#}
 
     </script>
 {% endblock content %}

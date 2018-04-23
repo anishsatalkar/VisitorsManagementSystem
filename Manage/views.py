@@ -50,23 +50,23 @@ def add_visitor(request):
 
             else:
                 visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
-                                                 middle_name=visitor_form.cleaned_data.get('middle_name'),
-                                                 last_name=visitor_form.cleaned_data.get('last_name'),
-                                                 email=visitor_form.cleaned_data.get('email'),
-                                                 mobile=mobile_no,
-                                                 phone=visitor_form.cleaned_data.get('phone'),
-                                                 organisation=visitor_form.cleaned_data.get('organisation'),
-                                                 university=visitor_form.cleaned_data.get('university'),
-                                                 designation=visitor_form.cleaned_data.get('designation'),
-                                                 purpose_of_visit=visitor_form.cleaned_data.get('purpose_of_visit'))
+                                                     middle_name=visitor_form.cleaned_data.get('middle_name'),
+                                                     last_name=visitor_form.cleaned_data.get('last_name'),
+                                                     email=visitor_form.cleaned_data.get('email'),
+                                                     mobile=mobile_no,
+                                                     phone=visitor_form.cleaned_data.get('phone'),
+                                                     organisation=visitor_form.cleaned_data.get('organisation'),
+                                                     university=visitor_form.cleaned_data.get('university'),
+                                                     designation=visitor_form.cleaned_data.get('designation'),
+                                                     purpose_of_visit=visitor_form.cleaned_data.get('purpose_of_visit'))
 
                 address_obj = Address.objects.create(building=address_form.cleaned_data.get('building'),
-                                                 pin_code=address_form.cleaned_data.get('pin_code'),
-                                                 street=address_form.cleaned_data.get('street'),
-                                                 city=address_form.cleaned_data.get('city'),
-                                                 state=address_form.cleaned_data.get('state'),
-                                                 country=address_form.cleaned_data.get('country'),
-                                                 visitor=visitor_obj)
+                                                     pin_code=address_form.cleaned_data.get('pin_code'),
+                                                     street=address_form.cleaned_data.get('street'),
+                                                     city=address_form.cleaned_data.get('city'),
+                                                     state=address_form.cleaned_data.get('state'),
+                                                     country=address_form.cleaned_data.get('country'),
+                                                     visitor=visitor_obj)
 
             visitor_name = visitor_obj.first_name + " " + visitor_obj.last_name
             # log_obj = Log.objects.create(visitor=visitor_name,
@@ -112,24 +112,41 @@ def delete_visitor(request):
 
 
 def search_visitor(request):
-    if request.method == "POST":
-        query = request.POST.get('query')
-        visitors = Visitor.objects.filter(organisation__icontains=query)
-        if not visitors:
-            visitors = Visitor.objects.filter(university__icontains=query)
-        print(visitors)
-        return render(request, 'view_visitors.html', {'returned_visitors': visitors})
+    query = str(request.POST.get('query'))
+
+    if Visitor.objects.filter(first_name__icontains=query):
+        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+        (first_name__icontains=query)})
+    elif Visitor.objects.filter(middle_name__icontains=query):
+        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+        (middle_name__icontains=query)})
+    elif Visitor.objects.filter(last_name__icontains=query):
+        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+        (last_name__icontains=query)})
+    elif Visitor.objects.filter(mobile__icontains=query):
+        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+        (mobile__icontains=query)})
+    # elif Visitor.objects.filter(country__icontains=query):
+    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+    #     (date_time_of_entry__year=query)})
+    # elif Visitor.objects.filter(state__icontains=query):
+    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+    #     (date_time_of_entry__year=query)})
+    # elif Visitor.objects.filter(city__icontains=query):
+    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+    #     (date_time_of_entry__year=query)})
+    # elif Visitor.objects.filter(pin_code__icontains=query):
+    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+    #     (pin_code__icontains=query)})
+    elif query.isnumeric():
+        if Visitor.objects.filter(date_time_of_entry__year=query):
+            return render(request,'view_visitors.html',{'returned_visitors' :Visitor.objects.filter
+        (date_time_of_entry__year=query) })
+    # elif Visitor.objects.filter(date_time_of_entry__month=query):
+    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+    #     (date_time_of_entry__year=query)})
     else:
-        print('10000')
-        query = request.GET.get('query')
-        visitors = Visitor.objects.filter(organisation__icontains=query)
-        if not visitors:
-            visitors = Visitor.objects.filter(university__icontains=query)
-        # print(visitors)
-        if len(visitors) > 0:
-            return HttpResponse(visitors[0].first_name)
-        else:
-            return HttpResponse('No match')
+        return render(request, 'view_visitors.html', {'returned_visitors': []})
 
 
 def edit_visitor(request):
@@ -140,6 +157,11 @@ def edit_visitor(request):
         # return HttpResponse(visitor)
         return render(request, 'add_visitor.html', {'form': VisitorForm(instance=visitor),
                                                     'address_form': AddressForm(instance=address),
-                                                    'present_id' : visitor_pk})
+                                                    'present_id': visitor_pk})
     else:
         return HttpResponse('Get')
+
+
+
+
+
