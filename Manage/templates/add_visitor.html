@@ -152,16 +152,6 @@
             var phone_error = document.getElementById('phone_error');
             var form_error_message = document.getElementById('form_error_message');
             var flag = 0;
-            if (phone.toString().length !== 8) {
-                phone_error.innerText = "Phone number should be 8 digits wide.";
-                flag = 1;
-            }
-            if (pin_code.toString().length !== 6) {
-                pin_code_error.innerText = "Pin code should be 6 digits wide";
-                flag = 1;
-            }else{
-                pin_code_error.innerText = "";
-            }
             if (flag === 0)
                 return true;
             else {

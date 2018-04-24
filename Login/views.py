@@ -9,7 +9,7 @@ from django.shortcuts import render
 def login_user(request):
     user = request.user
     if user.is_authenticated:
-        print('auth')
+        return HttpResponseRedirect('/home/add_visitor/' , {'user_data' : user})
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

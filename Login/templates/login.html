@@ -16,7 +16,8 @@
         body, html {
             height: 100%;
             background-repeat: no-repeat;
-        {#background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));#}
+            background-color: #f9f9f9;
+            {#background-image: linear-gradient(#f7f2f8,#e7e2e8);#}
         }
 
         .card-container.card {
@@ -37,7 +38,7 @@
          * Card component
          */
         .card {
-            background-color: #F7F7F7;
+            background-color: #ffffff;
             /* just in case there no content*/
             padding: 20px 25px 30px;
             margin: 0 auto 25px;
@@ -115,7 +116,7 @@
         .btn.btn-signin:hover,
         .btn.btn-signin:active,
         .btn.btn-signin:focus {
-            background-color: rgb(12, 97, 33);
+            background-color: #304d7a;
         }
 
         .forgot-password {
@@ -163,12 +164,13 @@
 
             <div class="card card-container">
                 <div class="row">
-                    <img src="{% static '/logo-vit.png' %}" style="width: 30%; height: 30%; margin: 0 auto; display: block;">
+                    <img src="{% static '/logo-vit.png' %}"
+                         style="width: 30%; height: 30%; margin: 0 auto; display: block;">
                 </div>
 
 
                 <h4 id="login_title">Visitors Management System</h4>
-                <form class="form-signin" method="post" action="{% url 'login_user' %}">
+                <form class="form-signin" method="post" action="{% url 'Login:login_user' %}">
                     {% csrf_token %}
                     <span id="reauth-email" class="reauth-email"></span>
                     <input name="username" id="username" class="form-control" placeholder="Email address" required

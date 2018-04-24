@@ -74,6 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'VisitorsManagement.wsgi.application'
 
+SENDSMS_BACKEND = 'myapp.mysmsbackend.SmsBackend'
+
+
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

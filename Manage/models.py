@@ -27,11 +27,13 @@ class Address(models.Model):
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
     building = models.CharField(max_length=50, blank=True, null=True)
     pin_code = models.PositiveIntegerField()
-    street = models.CharField(max_length=150)
+    street = models.CharField(max_length=150,blank=True , null=True)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    state = models.CharField(max_length=50 , blank=True , null=True)
     country = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.building + " " + self.street + " " + self.city + " " + self.state + " " + self.country + " " + str(
+
+
+        return str(self.building) + " " + str(self.street) + " " + str(self.city) + " " + str(self.state) + " " + str(self.country) + " " + str(
             self.pin_code)

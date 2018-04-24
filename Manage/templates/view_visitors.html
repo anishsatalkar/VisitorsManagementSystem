@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                     <input type="text" class="form-control" name="query"
-                                           placeholder="Search by Organisation / University">
+                                           placeholder="Search by name , contact info , university , organisation , place , designation">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
@@ -34,7 +34,7 @@
                         {#                        <label class="alert alert-success">Found {{ returned_visitors.count }} visitors</label>#}
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">Found {{ returned_visitors.count }} visitor(s)</span>
-                        <form action="#" method="post" style="margin: 24px">
+                        <form action="{% url 'Manage:view_profile' %}" method="post" style="margin: 24px">
                             {% csrf_token %}
 
 
@@ -61,7 +61,15 @@
                                         </td>
                                         <td>{{ visitor.last_name }}</td>
                                         <td>{{ visitor.email }}</td>
-                                        <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                        {% if visitor.organisation and visitor.university %}
+                                            <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                        {% elif not visitor.organisation and visitor.university %}
+                                            <td>{{ visitor.university }}</td>
+                                        {% elif  visitor.organisation and not visitor.university %}
+                                            <td>{{ visitor.organisation }}</td>
+                                        {% else %}
+                                            <td>Not provided</td>
+                                        {% endif %}
                                         <td>{{ visitor.mobile }}</td>
                                         <td>{{ visitor.date_time_of_entry }}</td>
                                         <td>{{ visitor.purpose_of_visit }}</td>
@@ -80,13 +88,13 @@
                         <div class="row">
                             <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                 <input id="query_field_id" type="text" class="form-control" name="query"
-                                       placeholder="Search by Organisation / University">
+                                       placeholder="Search by name , contact info , university , organisation , place , designation">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
-{#                                <label>#}
-{#                                    <input type="checkbox" name="india">Outside India#}
-{#                                </label>#}
+                                {#                                <label>#}
+                                {#                                    <input type="checkbox" name="india">Outside India#}
+                                {#                                </label>#}
                             </div>
 
                         </div>
@@ -95,7 +103,7 @@
 
 
 
-                    <form action="#" method="post" style="margin: 24px">
+                    <form action="{% url 'Manage:view_profile' %}" method="post" style="margin: 24px">
                         {% csrf_token %}
 
                         <table id="visitor_table" class="display table table-striped table-hover table-bordered"
@@ -122,7 +130,15 @@
                                     </td>
                                     <td>{{ visitor.last_name }}</td>
                                     <td>{{ visitor.email }}</td>
-                                    <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                    {% if visitor.organisation and visitor.university %}
+                                        <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                    {% elif not visitor.organisation and visitor.university %}
+                                        <td>{{ visitor.university }}</td>
+                                    {% elif  visitor.organisation and not visitor.university %}
+                                        <td>{{ visitor.organisation }}</td>
+                                    {% else %}
+                                        <td>Not provided</td>
+                                    {% endif %}
                                     <td>{{ visitor.mobile }}</td>
                                     <td>{{ visitor.date_time_of_entry }}</td>
                                     <td>{{ visitor.purpose_of_visit }}</td>

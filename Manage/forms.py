@@ -77,11 +77,11 @@ class VisitorForm(ModelForm):
         #     )
 
         self.fields['first_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$', 'id': 'first_name_field'})
+            {'pattern': '^[.a-zA-Z ]*$', 'id': 'first_name_field'})
         self.fields['last_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$'})
+            {'pattern': '^[.a-zA-Z ]*$'})
         self.fields['middle_name'].widget.attrs.update(
-            {'pattern': '^[a-zA-Z ]*$'})
+            {'pattern': '^[.a-zA-Z ]*$'})
 
         # ,'pattern': '^[a-zA-Z+]*$'
         self.fields['mobile'].widget.attrs.update({'id': 'mobile_field', 'onkeypress': 'return isNumber(event)'})

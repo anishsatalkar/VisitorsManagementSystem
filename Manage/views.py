@@ -1,8 +1,9 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from sendsms import api
 
 from Manage.forms import VisitorForm, AddressForm
 from Manage.models import Visitor, Address
@@ -67,11 +68,6 @@ def add_visitor(request):
                                                      state=address_form.cleaned_data.get('state'),
                                                      country=address_form.cleaned_data.get('country'),
                                                      visitor=visitor_obj)
-
-            visitor_name = visitor_obj.first_name + " " + visitor_obj.last_name
-            # log_obj = Log.objects.create(visitor=visitor_name,
-            #                              date_time_of_entry=datetime.datetime.now())
-
             return render(request, 'add_visitor.html', {'form': VisitorForm,
                                                         'address_form': AddressForm,
                                                         'success': 'Visitor Added Successfully'})
@@ -87,14 +83,19 @@ def show_home(request):
 
 @login_required(login_url='/')
 def view_visitors(request):
+    if request.method == 'GET':
+        visitors = Visitor.objects.all()
+        return render(request, 'view_visitors.html', {'visitors': visitors})
+
+
+def view_profile(request):
     if request.method == 'POST':
         visitor = Visitor.objects.get(pk=request.POST.get('user_name'))
         address = Address.objects.get(visitor=visitor)
         return render(request, 'view_profile.html', {'visitor': visitor,
                                                      'address': address})
-    if request.method == 'GET':
-        visitors = Visitor.objects.all()
-        return render(request, 'view_visitors.html', {'visitors': visitors})
+    else:
+        return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
 
 
 def delete_visitor(request):
@@ -107,46 +108,46 @@ def delete_visitor(request):
             return render(request, 'add_visitor.html', {'form': VisitorForm(request.POST.get('edit_user')),
                                                         'present_id': request.POST.get('edit_user'),
                                                         'address_form': AddressForm(request.POST.get('edit_user'))})
-    elif request.method == 'GET':
-        return HttpResponse('Get')
+    else:
+        return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
 
 
 def search_visitor(request):
-    query = str(request.POST.get('query'))
+    if request.method == 'POST':
+        query = str(request.POST.get('query'))
 
-    if Visitor.objects.filter(first_name__icontains=query):
-        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-        (first_name__icontains=query)})
-    elif Visitor.objects.filter(middle_name__icontains=query):
-        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-        (middle_name__icontains=query)})
-    elif Visitor.objects.filter(last_name__icontains=query):
-        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-        (last_name__icontains=query)})
-    elif Visitor.objects.filter(mobile__icontains=query):
-        return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-        (mobile__icontains=query)})
-    # elif Visitor.objects.filter(country__icontains=query):
-    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-    #     (date_time_of_entry__year=query)})
-    # elif Visitor.objects.filter(state__icontains=query):
-    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-    #     (date_time_of_entry__year=query)})
-    # elif Visitor.objects.filter(city__icontains=query):
-    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-    #     (date_time_of_entry__year=query)})
-    # elif Visitor.objects.filter(pin_code__icontains=query):
-    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-    #     (pin_code__icontains=query)})
-    elif query.isnumeric():
-        if Visitor.objects.filter(date_time_of_entry__year=query):
-            return render(request,'view_visitors.html',{'returned_visitors' :Visitor.objects.filter
-        (date_time_of_entry__year=query) })
-    # elif Visitor.objects.filter(date_time_of_entry__month=query):
-    #     return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
-    #     (date_time_of_entry__year=query)})
+        if Visitor.objects.filter(first_name__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (first_name__icontains=query)})
+        elif Visitor.objects.filter(middle_name__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (middle_name__icontains=query)})
+        elif Visitor.objects.filter(last_name__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (last_name__icontains=query)})
+        elif Visitor.objects.filter(mobile__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (mobile__icontains=query)})
+        elif Visitor.objects.filter(organisation__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (organisation__icontains=query)})
+        elif Visitor.objects.filter(university__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (university__icontains=query)})
+        elif Visitor.objects.filter(designation__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (designation__icontains=query)})
+        elif Visitor.objects.filter(designation__icontains=query):
+            return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+            (designation__icontains=query)})
+        elif query.isnumeric():
+            if Visitor.objects.filter(date_time_of_entry__year=query):
+                return render(request, 'view_visitors.html', {'returned_visitors': Visitor.objects.filter
+                (date_time_of_entry__year=query)})
+        else:
+            return render(request, 'view_visitors.html', {'returned_visitors': []})
     else:
-        return render(request, 'view_visitors.html', {'returned_visitors': []})
+        return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
 
 
 def edit_visitor(request):
@@ -154,14 +155,8 @@ def edit_visitor(request):
         visitor_pk = request.POST.get('pk')
         visitor = Visitor.objects.get(pk=visitor_pk)
         address = Address.objects.get(visitor=visitor)
-        # return HttpResponse(visitor)
         return render(request, 'add_visitor.html', {'form': VisitorForm(instance=visitor),
                                                     'address_form': AddressForm(instance=address),
                                                     'present_id': visitor_pk})
     else:
-        return HttpResponse('Get')
-
-
-
-
-
+        return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
