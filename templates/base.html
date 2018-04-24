@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <link rel="icon" href="{% static 'logo-vit.png' %}">
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <link rel="stylesheet"
@@ -37,7 +38,7 @@
             overflow-x: hidden;
         }
 
-        table{
+        table {
             margin-top: 24px;
             margin-bottom: 24px;
         }
@@ -86,29 +87,17 @@
         }
 
         .page-footer {
-            {#position: absolute;#}
-            {#bottom: 0px;#}
             width: 100%;
             background-color: #404040;
             padding: 8px;
-            {#margin-top: 300px;#}
             color: white;
-        {#alignment: bottom;#}{#position: fixed;#}
             bottom: 0;
-
-
         }
 
-        {#.navbar-default > .container-fluid > .navbar-nav > li > a {#}
-        {#    color: white;#}
-        {#    font-family: Ubuntu, sans-serif;#}
-        {# }#}
-
-
     </style>
-{% block style %}
+    {% block style %}
 
-{% endblock style %}
+    {% endblock style %}
 
 </head>
 <body>
@@ -160,22 +149,5 @@ margin-right: 20px">
 
     {% endblock content %}
 </div>
-{#<footer class="page-footer">#}
-{#    <div class="container-fluid">#}
-{#        <div class="row">#}
-{#            <div class="col-md-4">#}
-{#                <h5 style="display:table-cell;vertical-align: middle">Visitor Management System</h5>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#                <h5 style="">Vishwakarma Institute Of Information Technology</h5>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#                <h5>viitdevs@gmail.com</h5>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#</footer>#}
-
 </body>
 </html>
