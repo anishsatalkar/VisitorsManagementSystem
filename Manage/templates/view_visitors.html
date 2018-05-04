@@ -20,8 +20,7 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="input-group" style="width: 50%; margin: auto; display: flex;">
-                                    <input type="text" class="form-control" name="query"
-                                           placeholder="Search by name , contact info , university , organisation , place , designation">
+                                    <input type="text" class="form-control" name="query">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
@@ -31,7 +30,6 @@
                         </form>
 
 
-                        {#                        <label class="alert alert-success">Found {{ returned_visitors.count }} visitors</label>#}
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">Found {{ returned_visitors.count }} visitor(s)</span>
                         <form action="{% url 'Manage:view_profile' %}" method="post" style="margin: 24px">
@@ -79,6 +77,18 @@
                             </table>
                         </form>
                     {% else %}
+                        <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                    <input type="text" class="form-control" name="query">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Search</button>
+                                </span>
+                                </div>
+                            </div>
+
+                        </form>
                         <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
                               id="first_name_error">No Visitors Found</span>
                     {% endif %}
@@ -87,8 +97,7 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="input-group" style="width: 50%; margin: auto; display: flex;">
-                                <input id="query_field_id" type="text" class="form-control" name="query"
-                                       placeholder="Search by name , contact info , university , organisation , place , designation">
+                                <input id="query_field_id" type="text" class="form-control" name="query">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
