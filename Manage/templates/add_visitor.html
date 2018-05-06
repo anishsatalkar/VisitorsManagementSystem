@@ -11,30 +11,31 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 central-view">
                 <legend style="color: dodgerblue;margin: 24px">Visitor</legend>
-                <form action="#" method="post" class="form-horizontal">
+                <form action="{% url 'Manage:add_visitor' %}" method="post" class="form-horizontal">
                     {% csrf_token %}
+                    <input type="hidden" name="present_id" value="{{ present_id }}">
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.first_name.label_tag }}</label>
                             <span class="error" id="first_name_error">{{ form.first_name.errors }}</span>
-                            <div class="">{{ form.first_name }}</div>
+                            {{ form.first_name }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.middle_name.label_tag }}</label>
                             <span class="error" id="middle_name_error">{{ form.middle_name.errors }}</span>
-                            <div class="">{{ form.middle_name }}</div>
+                            {{ form.middle_name }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.last_name.label_tag }}</label>
                             <span class="error" id="last_name_error">{{ form.last_name.errors }}</span>
-                            <div class="">{{ form.last_name }}</div>
+                            {{ form.last_name }}
                         </div>
                     </div>
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ form.email.label_tag }}</label>
                             <span class="error" id="first_name_error">{{ form.email.errors }}</span>
-                            <div class="">{{ form.email }}</div>
+                            {{ form.email }}
                         </div>
                         <div class="form-element col-md-2">
                             <label class="control-label">{{ form.country_code.label_tag }}</label>
@@ -96,19 +97,19 @@
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.street.label_tag }}</label>
                             <span class="error" id="last_name_error">{{ address_form.street.errors }}</span>
-                            <div class="">{{ address_form.street }}</div>
+                            {{ address_form.street }}
                         </div>
                     </div>
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.city.label_tag }}</label>
                             <span class="error" id="first_name_error">{{ address_form.city.errors }}</span>
-                            <div class="">{{ address_form.city }}</div>
+                            {{ address_form.city }}
                         </div>
                         <div class="form-element col-md-4">
                             <label class="control-label">{{ address_form.state.label_tag }}</label>
                             <span class="error" id="middle_name_error">{{ address_form.state.errors }}</span>
-                            <div class="">{{ address_form.state }}</div>
+                            {{ address_form.state }}
                         </div>
                         <div class="col-md-4">
                             <label class="control-label">{{ address_form.country.label_tag }}</label>
@@ -123,6 +124,8 @@
                         </div>
                     </div>
 
+
+                    <input type="hidden" name="edit_id" value="{{ present_id }}">
                     <span class="alert-danger" id="form_error_message" style="margin:0 auto;
     display:block;"></span>
                     <button type="submit" onclick="return validate()" class="btn btn-primary" style="margin:0 auto;
@@ -149,20 +152,6 @@
             var phone_error = document.getElementById('phone_error');
             var form_error_message = document.getElementById('form_error_message');
             var flag = 0;
-            {#if (mobile.toString().length !== 10) {#}
-            {#    mobile_error.innerText = "Mobile number should be 10 digits wide.";#}
-            {#    flag = 1;#}
-            {# }#}
-            if (phone.toString().length !== 8) {
-                phone_error.innerText = "Phone number should be 8 digits wide.";
-                flag = 1;
-            }
-            if (pin_code.toString().length !== 6) {
-                pin_code_error.innerText = "Pin code should be 6 digits wide";
-                flag = 1;
-            }else{
-                pin_code_error.innerText = "";
-            }
             if (flag === 0)
                 return true;
             else {
@@ -170,7 +159,6 @@
                 return false;
             }
         }
-
         function isAlphabet(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -186,20 +174,10 @@
         }
 
         $(function () {
-            var datenow = new Date();
             $("#datepicker1").datetimepicker({
                 format: 'Y-m-d H:i:s'
             });
         });
 
-        $(document).ready(function () {
-{#            var mobile_err = document.getElementById("mobile_error");#}
-{#            $('#mobile_field').keypress(function () {#}
-{#                var mobile = document.getElementById("mobile_field").value;#}
-{#                mobile_err.style.color = "green";#}
-{#                mobile_err.innerText = mobile.toString().length+1;#}
-{#            })#}
-
-        });
     </script>
 {% endblock content %}

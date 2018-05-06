@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
     <div class="container-fluid"
          style="margin-top:24px;padding-top: 8px;padding-bottom: 128px;">
         <div class="row">
@@ -11,13 +10,133 @@
             <div class="col-md-10 central-view">
 
                 <legend style="color: dodgerblue;margin: 24px;">Visitors</legend>
-                {% if visitors.count == 0 %}
-                    <h3>No Visitors Added</h3>
+                {% if not visitors %}
+                    {% if returned_visitors %}
+                        <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                    <input type="text" class="form-control" name="query">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Search</button>
+                                </span>
+                                </div>
+                                <input type="radio" name="search" value="university" id="univ_radio">
+                                <label for="univ_radio">University</label>
+                                <input type="radio" name="search" value="organisation" id="org_radio">
+                                <label for="org_radio">Organisation</label>
+                            </div>
+
+                        </form>
+
+
+                        <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
+                              id="first_name_error">Found {{ returned_visitors.count }} visitor(s)</span>
+                        <form action="{% url 'Manage:view_profile' %}" method="post" style="margin: 24px">
+                            {% csrf_token %}
+
+
+                            <table border="0" id="visitor_table"
+                                   class="display table table-striped table-hover table-bordered"
+                                   style="border-collapse:collapse;border:0;background-color:#ffffff;border-radius: 8px">
+
+                                <thead>
+                                <tr>
+                                    <th>Firstname</th>
+                                    <th>Lastname</th>
+                                    <th>Email</th>
+                                    <th>Organisation/University</th>
+                                    <th>Mobile</th>
+                                    <th>Date and Time of Entry</th>
+                                    <th>Purpose Of Visit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for visitor in returned_visitors %}
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" type="submit" name="user_name"
+                                                    value="{{ visitor.pk }}">{{ visitor.first_name }}</button>
+                                        </td>
+                                        <td>{{ visitor.last_name }}</td>
+                                        <td>{{ visitor.email }}</td>
+                                        {% if visitor.organisation and visitor.university %}
+                                            <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                        {% elif not visitor.organisation and visitor.university %}
+                                            <td>{{ visitor.university }}</td>
+                                        {% elif  visitor.organisation and not visitor.university %}
+                                            <td>{{ visitor.organisation }}</td>
+                                        {% else %}
+                                            <td>Not provided</td>
+                                        {% endif %}
+                                        <td>{{ visitor.mobile }}</td>
+                                        <td>{{ visitor.date_time_of_entry }}</td>
+                                        <td>{{ visitor.purpose_of_visit }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    {% else %}
+                        <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                    <input type="text" class="form-control" name="query">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Search</button>
+                                </span>
+                                </div>
+                                <input type="radio" name="search" value="university" id="univ_radio">
+                                <label for="univ_radio">University</label>
+                                <input type="radio" name="search" value="organisation" id="org_radio">
+                                <label for="org_radio">Organisation</label>
+                            </div>
+
+
+                        </form>
+                        <span style="margin: auto; display: flex;width: 50%;align-self: center;" class="alert-success"
+                              id="first_name_error">No Visitors Found</span>
+                    {% endif %}
                 {% else %}
-                    <form action="#" method="post" style="margin: 24px">
+                    <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                    <input id="query_field_id" type="text" class="form-control" name="query">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Search</button>
+                                </span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div style="max-width:50%;margin: auto; padding:8px;display: flex;">
+                                <label style="font-weight: normal;margin: 8px">Filter Search</label>
+                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search" value="university"
+                                       id="univ_radio">
+                                <label style="font-weight: normal;margin: 8px;" for="univ_radio">Only from Universities</label>
+                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search" value="organisation"
+                                       id="org_radio">
+                                <label style="font-weight: normal;margin: 8px;" for="org_radio">Only from Organisation</label>
+                                <button style="margin-left: 16px;" id="clear_button" type="button"
+                                        class="btn btn-default btn-sm">Clear
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                    <form action="{% url 'Manage:view_profile' %}" method="post" style="margin: 24px">
                         {% csrf_token %}
 
-                        <table id="visitor_table" class="display table table-striped table-hover table-bordered" style="background-color:#ffffff;border-radius: 8px">
+                        <table border="0" id="visitor_table"
+                               class="display table table-striped table-hover table-bordered"
+                               style="border-collapse:collapse;border:0;background-color:#ffffff;border-radius: 8px">
 
                             <thead>
                             <tr>
@@ -33,8 +152,6 @@
                             <tbody>
 
                             {% for visitor in visitors %}
-
-                                {#                        data-toggle="collapse" data-target=".{{ forloop.counter }}"#}
                                 <tr>
                                     <td>
                                         <button class="btn btn-primary btn-sm" type="submit" name="user_name"
@@ -42,36 +159,65 @@
                                     </td>
                                     <td>{{ visitor.last_name }}</td>
                                     <td>{{ visitor.email }}</td>
-                                    <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                    {% if visitor.organisation and visitor.university %}
+                                        <td>{{ visitor.organisation }} / {{ visitor.university }}</td>
+                                    {% elif not visitor.organisation and visitor.university %}
+                                        <td>{{ visitor.university }}</td>
+                                    {% elif  visitor.organisation and not visitor.university %}
+                                        <td>{{ visitor.organisation }}</td>
+                                    {% else %}
+                                        <td>Not provided</td>
+                                    {% endif %}
                                     <td>{{ visitor.mobile }}</td>
                                     <td>{{ visitor.date_time_of_entry }}</td>
                                     <td>{{ visitor.purpose_of_visit }}</td>
                                 </tr>
                             {% endfor %}
-
-
                             </tbody>
-
                         </table>
                     </form>
                 {% endif %}
-
             </div>
             <div class="col-md-1">
-
             </div>
         </div>
-
     </div>
-
     <script>
-        $(document).ready(function () {
-            $('#visitor_table').DataTable();
+        {#$(document).ready(function () {#}
+        {#    $('#visitor_table').DataTable();#}
+        {##}
+        {# });#}
 
-         });
+        $('document').ready(function () {
+
+            $('#clear_button').hide().click(function () {
+                $('#univ_radio').prop('checked', false);
+                $('#org_radio').prop('checked', false);
+                $('#clear_button').hide();
+            });
+            $('#query_field_id').keyup(function () {
+                $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {
+                    {#alert("Data: " + data + "\nStatus: " + status);#}
+                    $('#query_field_id').style.placeholder = data;
+                });
+
+            });
+
+            $('#univ_radio').change(function () {
+                $('#clear_button').show();
+            });
+
+            $('#org_radio').change(function () {
+                $('#clear_button').show();
+            });
+
+
+        });
+
+
+        {#function search() {#}
+        {#    #}
+        {# }#}
 
     </script>
-
-
-
 {% endblock content %}
