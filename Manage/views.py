@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from Manage.models import Log
 
 from Manage.forms import VisitorForm, AddressForm
@@ -73,11 +73,30 @@ def view_visitors(request):
 
 def delete_visitor(request):
     if request.method == 'POST':
-        if request.POST['delete_visitor']:
+        if request.POST.get('delete_visitor'):
             delete_visitor = Visitor.objects.get(pk=request.POST.get('delete_user'))
             delete_visitor.delete()
             return render(request, 'view_profile.html', {'success': 'User Deleted'})
-        elif request.POST['edit_user']:
-            edit_visitor = Visitor.objects.get(pk=request.POST.get('edit_user'))
-            return render(request, 'add_visitor.html' , {'asd':'asd'})
+        elif request.POST.get('edit_user'):
+            instance = Visitor.objects.get(pk=request.POST.get('edit_user'))
+            form = VisitorForm(request.POST or None, instance=instance)
+            return render(request, 'add_visitor.html' , {'form':form})
         # return HttpResponse('hmm')
+
+def visitor_edit(request,pk):
+    visitor = get_object_or_404(Visitor, pk=pk)
+    address = get_object_or_404(Address,visitor=visitor)
+    if request.method == "POST":
+        form = VisitorForm(request.POST, instance=visitor)
+        address_form = AddressForm(request.POST,instance=address)
+        if form.is_valid() and address_form.is_valid():
+            post = form.save(commit=False)
+            address_updated = address_form.save(commit=False)
+            address_updated.save()
+            post.save()
+            # redirect('Manage:view_visitors')
+            return render(request,'view_profile.html',{'success' : 'User Edited Successfully'})
+    else:
+        form = VisitorForm(instance=visitor)
+        address_form = AddressForm(instance=address)
+        return render(request, 'add_visitor.html', {'form': form,'address_form' : address_form})

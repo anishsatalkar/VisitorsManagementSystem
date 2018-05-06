@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-8 central-view">
                 <legend style="color: cornflowerblue">Visitor Profile</legend>
-                <form action="{% url 'Manage:delete_visitor' %}" method="post">
+                <form method="post">
                     {% csrf_token %}
                     <dl class="dl-horizontal">
 
@@ -52,6 +52,7 @@
                             value="{{ visitor.pk }}">Delete Visitor</button>
 {#                    <button class="btn btn-info btn-sm" type="submit" name="edit_user"#}
 {#                            value="{{ visitor.pk }}">Edit</button>#}
+                    <a class="btn btn-default" href="{% url 'Manage:visitor_edit' pk=visitor.pk%}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </form>
 
             </div>
