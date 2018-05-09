@@ -195,13 +195,13 @@
                 $('#org_radio').prop('checked', false);
                 $('#clear_button').hide();
             });
-            $('#query_field_id').keyup(function () {
-                $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {
+            {#$('#query_field_id').keyup(function () {#}
+            {#    $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {#}
                     {#alert("Data: " + data + "\nStatus: " + status);#}
-                    $('#query_field_id').style.placeholder = data;
-                });
-
-            });
+            {#        $('#query_field_id').style.placeholder = data;#}
+            {#    });#}
+            {##}
+            {# });#}
 
             $('#univ_radio').change(function () {
                 $('#clear_button').show();
