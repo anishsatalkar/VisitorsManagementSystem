@@ -106,6 +106,13 @@ def delete_visitor(request):
 def search_visitor(request):
     if request.method == 'POST':
         query = str(request.POST.get('query'))
+        only_univ = False
+        only_org = False
+        if request.POST.get('search'):
+            if request.POST.get('search') == 'university':
+                only_univ = True
+            else:
+                only_org = True
         visitors_to_send = []
         completed_visitors = []
 
@@ -113,8 +120,16 @@ def search_visitor(request):
             field_name = str(field).split('.')[2] + '__icontains'
             if not field_name.__contains__('date'):
                 visitors = Visitor.objects.filter(**{field_name: query}).exclude(pk__in=completed_visitors)
+
                 if visitors:
                     for visitor in visitors:
+                        if only_univ:
+                            if visitor.university is None:
+                                continue
+                        elif only_org:
+                            if visitor.organisation is None:
+                                continue
+
                         visitors_to_send.append(visitor)
                         completed_visitors.append(visitor.pk)
 
@@ -124,6 +139,12 @@ def search_visitor(request):
                 addresses = Address.objects.filter(**{field_name: query}).exclude(visitor__pk__in=completed_visitors)
                 if addresses:
                     for address in addresses:
+                        if only_univ:
+                            if address.visitor.university is None:
+                                continue
+                        elif only_org:
+                            if address.visitor.organisation is None:
+                                continue
                         visitors_to_send.append(address.visitor)
                         completed_visitors.append(address.visitor.pk)
         return render(request, 'view_visitors.html', {'returned_visitors': visitors_to_send})
