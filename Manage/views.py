@@ -15,11 +15,9 @@ def add_visitor(request):
         address_form = AddressForm(request.POST)
         visitor_form = VisitorForm(request.POST)
         if address_form.is_valid() and visitor_form.is_valid():
-            print('form valid')
 
             country_code = request.POST['country_code']
             mobile_no = visitor_form.cleaned_data.get('mobile')
-            mobile_no = country_code + '-' + mobile_no
 
             if request.POST.get('edit_id'):
                 visitor_id = request.POST.get('edit_id')
@@ -97,14 +95,10 @@ def view_profile(request):
 
 def delete_visitor(request):
     if request.method == 'POST':
-        # if request.POST.get('delete_user'):
+        if request.POST.get('delete_user'):
             delete_vis = Visitor.objects.get(pk=request.POST.get('delete_user'))
             delete_vis.delete()
             return render(request, 'view_profile.html', {'success': 'User Deleted'})
-        # elif request.POST.get('edit_user'):
-        #     return render(request, 'add_visitor.html', {'form': VisitorForm(request.POST.get('edit_user')),
-        #                                                 'present_id': request.POST.get('edit_user'),
-        #                                                 'address_form': AddressForm(request.POST.get('edit_user'))})
     else:
         return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
 

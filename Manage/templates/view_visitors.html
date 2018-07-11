@@ -15,16 +15,34 @@
                         <form action="{% url 'Manage:search_visitor' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
-                                    <input type="text" class="form-control" name="query">
-                                    <span class="input-group-btn">
+                                <div class="col-md-12">
+                                    <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                        <input id="query_field_id" type="text" class="form-control" name="query">
+                                        <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
+                                    </div>
                                 </div>
-                                <input type="radio" name="search" value="university" id="univ_radio">
-                                <label for="univ_radio">University</label>
-                                <input type="radio" name="search" value="organisation" id="org_radio">
-                                <label for="org_radio">Organisation</label>
+
+
+                            </div>
+                            <div class="row">
+                                <div style="max-width:50%;margin: auto; padding:8px;display: flex;">
+                                    <label style="font-weight: normal;margin: 8px">Filter Search</label>
+                                    <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                           value="university"
+                                           id="univ_radio">
+                                    <label style="font-weight: normal;margin: 8px;" for="univ_radio">Only from
+                                        Universities</label>
+                                    <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                           value="organisation"
+                                           id="org_radio">
+                                    <label style="font-weight: normal;margin: 8px;" for="org_radio">Only from
+                                        Organisation</label>
+                                    <button style="margin-left: 16px;" id="clear_button" type="button"
+                                            class="btn btn-default btn-sm">Clear
+                                    </button>
+                                </div>
                             </div>
 
                         </form>
@@ -81,16 +99,34 @@
                         <form action="{% url 'Manage:search_visitor' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
-                                    <input type="text" class="form-control" name="query">
-                                    <span class="input-group-btn">
+                                <div class="col-md-12">
+                                    <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                        <input id="query_field_id" type="text" class="form-control" name="query">
+                                        <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
+                                    </div>
                                 </div>
-                                <input type="radio" name="search" value="university" id="univ_radio">
-                                <label for="univ_radio">University</label>
-                                <input type="radio" name="search" value="organisation" id="org_radio">
-                                <label for="org_radio">Organisation</label>
+
+
+                            </div>
+                            <div class="row">
+                                <div style="max-width:50%;margin: auto; padding:8px;display: flex;">
+                                    <label style="font-weight: normal;margin: 8px">Filter Search</label>
+                                    <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                           value="university"
+                                           id="univ_radio">
+                                    <label style="font-weight: normal;margin: 8px;" for="univ_radio">Only from
+                                        Universities</label>
+                                    <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                           value="organisation"
+                                           id="org_radio">
+                                    <label style="font-weight: normal;margin: 8px;" for="org_radio">Only from
+                                        Organisation</label>
+                                    <button style="margin-left: 16px;" id="clear_button" type="button"
+                                            class="btn btn-default btn-sm">Clear
+                                    </button>
+                                </div>
                             </div>
 
 
@@ -116,12 +152,16 @@
                         <div class="row">
                             <div style="max-width:50%;margin: auto; padding:8px;display: flex;">
                                 <label style="font-weight: normal;margin: 8px">Filter Search</label>
-                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search" value="university"
+                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                       value="university"
                                        id="univ_radio">
-                                <label style="font-weight: normal;margin: 8px;" for="univ_radio">Only from Universities</label>
-                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search" value="organisation"
+                                <label style="font-weight: normal;margin: 8px;" for="univ_radio">Only from
+                                    Universities</label>
+                                <input style="margin: 8px; margin-top: 12px;" type="radio" name="search"
+                                       value="organisation"
                                        id="org_radio">
-                                <label style="font-weight: normal;margin: 8px;" for="org_radio">Only from Organisation</label>
+                                <label style="font-weight: normal;margin: 8px;" for="org_radio">Only from
+                                    Organisation</label>
                                 <button style="margin-left: 16px;" id="clear_button" type="button"
                                         class="btn btn-default btn-sm">Clear
                                 </button>
@@ -183,11 +223,6 @@
         </div>
     </div>
     <script>
-        {#$(document).ready(function () {#}
-        {#    $('#visitor_table').DataTable();#}
-        {##}
-        {# });#}
-
         $('document').ready(function () {
 
             $('#clear_button').hide().click(function () {
@@ -197,11 +232,10 @@
             });
             {#$('#query_field_id').keyup(function () {#}
             {#    $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {#}
-                    {#alert("Data: " + data + "\nStatus: " + status);#}
             {#        $('#query_field_id').style.placeholder = data;#}
             {#    });#}
-            {##}
-            {# });#}
+{##}
+{#            });#}
 
             $('#univ_radio').change(function () {
                 $('#clear_button').show();
@@ -213,11 +247,5 @@
 
 
         });
-
-
-        {#function search() {#}
-        {#    #}
-        {# }#}
-
     </script>
 {% endblock content %}
