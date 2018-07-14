@@ -74,7 +74,7 @@ def add_visitor(request):
 
 def show_home(request):
     if request.method == 'GET':
-        return render(request, 'base.html')
+        return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
     return None
 
 
