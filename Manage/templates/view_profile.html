@@ -25,7 +25,11 @@
                         <dd>{{ visitor.email }}</dd>
 
                         <dt>Mobile</dt>
-                        <dd>{{ visitor.mobile }}</dd>
+                        {% if visitor.country_code %}
+                            <dd>{{ visitor.country_code }} {{ visitor.mobile }}</dd>
+                        {% else %}
+                            <dd>{{ visitor.country_code }} {{ visitor.mobile }}</dd>
+                        {% endif %}
 
                         <dt>Phone</dt>
                         <dd>{{ visitor.phone }}</dd>

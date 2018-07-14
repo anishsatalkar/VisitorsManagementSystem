@@ -35,6 +35,26 @@ class Address(models.Model):
     country = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.building) + " " + str(self.street) + " " + str(self.city) + " " + str(self.state) + " " + str(
-            self.country) + " " + str(
-            self.pin_code)
+        address_string = ""
+        if self.building:
+            address_string = address_string + self.building + " "
+
+        if self.street:
+            address_string = address_string + self.street + " "
+
+        if self.city:
+            address_string = address_string + self.city + " "
+
+        if self.state:
+            address_string = address_string + self.state + " "
+
+        if self.country:
+            address_string = address_string + self.country + " "
+
+        if self.pin_code:
+            address_string = address_string + str(self.pin_code)
+
+        # return str(self.building) + " " + str(self.street) + " " + str(self.city) + " " + str(self.state) + " " + str(
+        #     self.country) + " " + str(
+        #     self.pin_code)
+        return address_string

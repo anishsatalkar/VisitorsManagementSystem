@@ -29,6 +29,7 @@ def add_visitor(request):
                 visitor_obj.email = visitor_form.cleaned_data.get('email')
                 visitor_obj.mobile = mobile_no
                 visitor_obj.phone = visitor_form.cleaned_data.get('phone')
+                visitor_obj.country_code = country_code
                 visitor_obj.organisation = visitor_form.cleaned_data.get('organisation')
                 visitor_obj.university = visitor_form.cleaned_data.get('university')
                 visitor_obj.designation = visitor_form.cleaned_data.get('designation')
@@ -50,6 +51,7 @@ def add_visitor(request):
                                                      last_name=visitor_form.cleaned_data.get('last_name'),
                                                      email=visitor_form.cleaned_data.get('email'),
                                                      mobile=mobile_no,
+                                                     country_code = country_code,
                                                      phone=visitor_form.cleaned_data.get('phone'),
                                                      organisation=visitor_form.cleaned_data.get('organisation'),
                                                      university=visitor_form.cleaned_data.get('university'),
@@ -162,3 +164,4 @@ def edit_visitor(request):
                                                     'present_id': visitor_pk})
     else:
         return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
+

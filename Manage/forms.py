@@ -11,15 +11,28 @@ class VisitorForm(ModelForm):
     with open('data.json') as data_file:
         from_json = json.load(data_file)
 
+
     for i in range(0, len(from_json['countries'])):
         CHOICES.append((str('+' + from_json['countries'][i]['code']),
                         (str(from_json['countries'][i]['full']) + " +" + from_json['countries'][i]['code'])))
     country_code = forms.ChoiceField(choices=CHOICES)
 
-    # print(CHOICES)
 
     def __init__(self, *args, **kwargs):
         super(VisitorForm, self).__init__(*args, **kwargs)
+
+        if self.instance.country_code:
+            CHOICES = []
+            CHOICES.append(self.instance.country_code)
+            with open('data.json') as data_file:
+                from_json = json.load(data_file)
+            for i in range(0, len(from_json['countries'])):
+                CHOICES.append((str('+' + from_json['countries'][i]['code']),
+                                (str(from_json['countries'][i]['full']) + " +" + from_json['countries'][i]['code'])))
+            country_code = forms.ChoiceField(choices=CHOICES)
+            self.country_code = country_code
+        if self.instance.date_time_of_entry:
+            self.date_time_of_entry = self.instance.date_time_of_entry
 
         for field in self.fields:
             self.fields[field].widget.attrs.update({'class': 'form-control'})
@@ -30,7 +43,6 @@ class VisitorForm(ModelForm):
         self.fields['middle_name'].widget.attrs.update(
             {'pattern': '^[.a-zA-Z ]*$'})
 
-        # ,'pattern': '^[a-zA-Z+]*$'
         self.fields['mobile'].widget.attrs.update({'id': 'mobile_field', 'onkeypress': 'return isNumber(event)'})
         self.fields['phone'].widget.attrs.update({'id': 'phone_field', 'onkeypress': 'return isNumber(event)'})
 
