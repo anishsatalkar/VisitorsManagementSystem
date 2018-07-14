@@ -15,7 +15,7 @@
                         <form action="{% url 'Manage:search_visitor' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                         <input id="query_field_id" type="text" class="form-control" name="query">
                                         <span class="input-group-btn">
@@ -23,7 +23,9 @@
                                 </span>
                                     </div>
                                 </div>
-
+                                <div>
+                                    <button class="btn btn-default">Date Range</button>
+                                </div>
 
                             </div>
                             <div class="row">
@@ -139,7 +141,7 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                <div class="input-group" style="margin: auto; display: flex;">
                                     <input id="query_field_id" type="text" class="form-control" name="query">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
@@ -230,12 +232,6 @@
                 $('#org_radio').prop('checked', false);
                 $('#clear_button').hide();
             });
-            {#$('#query_field_id').keyup(function () {#}
-            {#    $.get("/home/search_visitor/", {query: $('#query_field_id').val()}, function (data, status) {#}
-            {#        $('#query_field_id').style.placeholder = data;#}
-            {#    });#}
-{##}
-{#            });#}
 
             $('#univ_radio').change(function () {
                 $('#clear_button').show();
@@ -244,7 +240,6 @@
             $('#org_radio').change(function () {
                 $('#clear_button').show();
             });
-
 
         });
     </script>

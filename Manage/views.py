@@ -2,8 +2,18 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+import unicodedata
+
 from Manage.forms import VisitorForm, AddressForm
 from Manage.models import Visitor, Address
+
+
+def normalize_caseless(text):
+    return unicodedata.normalize("NFKD", text.casefold())
+
+
+def caseless_equal(left, right):
+    return normalize_caseless(left) == normalize_caseless(right)
 
 
 @login_required(login_url='/')
@@ -44,6 +54,9 @@ def add_visitor(request):
                 address.state = address_form.cleaned_data.get('state')
                 address.country = address_form.cleaned_data.get('country')
                 address.save()
+                return render(request, 'add_visitor.html', {'form': VisitorForm,
+                                                            'address_form': AddressForm,
+                                                            'success': 'Visitor Updated Successfully'})
 
             else:
                 visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
@@ -51,7 +64,7 @@ def add_visitor(request):
                                                      last_name=visitor_form.cleaned_data.get('last_name'),
                                                      email=visitor_form.cleaned_data.get('email'),
                                                      mobile=mobile_no,
-                                                     country_code = country_code,
+                                                     country_code=country_code,
                                                      phone=visitor_form.cleaned_data.get('phone'),
                                                      organisation=visitor_form.cleaned_data.get('organisation'),
                                                      university=visitor_form.cleaned_data.get('university'),
@@ -65,9 +78,9 @@ def add_visitor(request):
                                                      state=address_form.cleaned_data.get('state'),
                                                      country=address_form.cleaned_data.get('country'),
                                                      visitor=visitor_obj)
-            return render(request, 'add_visitor.html', {'form': VisitorForm,
-                                                        'address_form': AddressForm,
-                                                        'success': 'Visitor Added Successfully'})
+                return render(request, 'add_visitor.html', {'form': VisitorForm,
+                                                            'address_form': AddressForm,
+                                                            'success': 'Visitor Added Successfully'})
         else:
             return HttpResponse('Form Invalid')
 
@@ -122,7 +135,6 @@ def search_visitor(request):
             field_name = str(field).split('.')[2] + '__icontains'
             if not field_name.__contains__('date'):
                 visitors = Visitor.objects.filter(**{field_name: query}).exclude(pk__in=completed_visitors)
-
                 if visitors:
                     for visitor in visitors:
                         if only_univ:
@@ -134,6 +146,7 @@ def search_visitor(request):
 
                         visitors_to_send.append(visitor)
                         completed_visitors.append(visitor.pk)
+
 
         for field in Address._meta.fields:
             field_name = str(field).split('.')[2] + '__icontains'
@@ -164,4 +177,3 @@ def edit_visitor(request):
                                                     'present_id': visitor_pk})
     else:
         return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})
-
