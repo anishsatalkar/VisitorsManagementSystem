@@ -15,16 +15,13 @@
                         <form action="{% url 'Manage:search_visitor' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="input-group" style="width: 50%; margin: auto; display: flex;">
                                         <input id="query_field_id" type="text" class="form-control" name="query">
                                         <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
                                     </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-default">Date Range</button>
                                 </div>
 
                             </div>
@@ -62,8 +59,8 @@
 
                                 <thead>
                                 <tr>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
                                     <th>Email</th>
                                     <th>Organisation/University</th>
                                     <th>Mobile</th>
@@ -141,15 +138,13 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="input-group" style="margin: auto; display: flex;">
+                                <div class="input-group" style="width:50%;  margin: auto; display: flex;">
                                     <input id="query_field_id" type="text" class="form-control" name="query">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Search</button>
                                 </span>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="row">
                             <div style="max-width:50%;margin: auto; padding:8px;display: flex;">
@@ -182,10 +177,10 @@
 
                             <thead>
                             <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
+                                <th>First name</th>
+                                <th>Last name</th>
                                 <th>Email</th>
-                                <th>Organisation/University</th>
+                                <th>Organisation / University</th>
                                 <th>Mobile</th>
                                 <th>Date and Time of Entry</th>
                                 <th>Purpose Of Visit</th>
