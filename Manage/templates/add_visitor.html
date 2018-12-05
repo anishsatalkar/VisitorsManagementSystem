@@ -6,6 +6,9 @@
 {#    </style>#}
 {#{% endblock style %}#}
 {% block content %}
+    <style>
+
+    </style>
     <div class="container-fluid"
          style="margin-top:24px;padding-top: 8px;padding-bottom: 64px;">
         <div class="row">
@@ -74,8 +77,8 @@
                     <div class="row" style="margin: 24px">
                         <div class="form-element col-md-4">
                             <label>Date and time of visitor's entry.</label>
-                                <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
-                                {{ form.date_time_of_entry }}
+                            <span class="error" id="first_name_error">{{ form.date_time_of_entry.errors }}</span>
+                            {{ form.date_time_of_entry }}
                         </div>
                     </div>
 
@@ -126,12 +129,16 @@
 
 
                     <input type="hidden" name="edit_id" value="{{ present_id }}">
-                    <span class="alert-danger" id="form_error_message" style="margin:0 auto;
-    display:block;"></span>
-                    <button type="submit" onclick="return validate()" class="btn btn-primary" style="margin:0 auto;
-    display:block;margin-bottom: 64px;">
-                        Submit
-                    </button>
+                    <div>
+                        <span class="alert-danger" id="form_error_message"></span>
+                        <button type="submit" onclick="return validate()" class="btn btn-primary"
+                                style="margin:0 auto;display:block;">
+                            Submit
+                        </button>
+{#                        {% if via_edit %}#}
+{#                            <label class="cancel_update" style="color:#304d7a;font-family:'Roboto Medium',sans-serif;margin:0 auto;display:block;">Cancel</label>#}
+{#                        {% endif %}#}
+                    </div>
 
 
                 </form>
@@ -159,6 +166,7 @@
                 return false;
             }
         }
+
         function isAlphabet(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;

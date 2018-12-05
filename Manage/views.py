@@ -8,12 +8,12 @@ from Manage.forms import VisitorForm, AddressForm
 from Manage.models import Visitor, Address
 
 
-def normalize_caseless(text):
-    return unicodedata.normalize("NFKD", text.casefold())
-
-
-def caseless_equal(left, right):
-    return normalize_caseless(left) == normalize_caseless(right)
+# def normalize_caseless(text):
+#     return unicodedata.normalize("NFKD", text.casefold())
+#
+#
+# def caseless_equal(left, right):
+#     return normalize_caseless(left) == normalize_caseless(right)
 
 
 @login_required(login_url='/')
@@ -54,9 +54,8 @@ def add_visitor(request):
                 address.state = address_form.cleaned_data.get('state')
                 address.country = address_form.cleaned_data.get('country')
                 address.save()
-                return render(request, 'add_visitor.html', {'form': VisitorForm,
-                                                            'address_form': AddressForm,
-                                                            'success': 'Visitor Updated Successfully'})
+                return HttpResponseRedirect('/home/view_visitors/', {'success': 'Visitor Updated Successfully'})
+
 
             else:
                 visitor_obj = Visitor.objects.create(first_name=visitor_form.cleaned_data.get('first_name'),
@@ -121,6 +120,7 @@ def delete_visitor(request):
 def search_visitor(request):
     if request.method == 'POST':
         query = str(request.POST.get('query'))
+
         only_univ = False
         only_org = False
         if request.POST.get('search'):
@@ -174,6 +174,7 @@ def edit_visitor(request):
         address = Address.objects.get(visitor=visitor)
         return render(request, 'add_visitor.html', {'form': VisitorForm(instance=visitor),
                                                     'address_form': AddressForm(instance=address),
+                                                    'via_edit' : True,
                                                     'present_id': visitor_pk})
     else:
         return HttpResponseRedirect('/home/add_visitor/', {'error': 'Redirected to Home.'})

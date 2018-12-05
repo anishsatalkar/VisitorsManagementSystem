@@ -8,13 +8,16 @@ class VisitorForm(ModelForm):
     model = Visitor
 
     CHOICES = []
+    countries = []
     with open('data.json') as data_file:
         from_json = json.load(data_file)
+        countries = sorted(from_json['countries'], key=lambda i:i['full'])
+
 
 
     for i in range(0, len(from_json['countries'])):
-        CHOICES.append((str('+' + from_json['countries'][i]['code']),
-                        (str(from_json['countries'][i]['full']) + " +" + from_json['countries'][i]['code'])))
+        CHOICES.append((str('+' + countries[i]['code']),
+                        (str(countries[i]['full']) + " +" + countries[i]['code'])))
     country_code = forms.ChoiceField(choices=CHOICES)
 
 

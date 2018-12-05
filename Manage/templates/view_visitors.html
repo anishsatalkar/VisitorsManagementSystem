@@ -8,20 +8,20 @@
 
             </div>
             <div class="col-md-10 central-view">
-
                 <legend style="color: dodgerblue;margin: 24px;">Visitors</legend>
                 {% if not visitors %}
                     {% if returned_visitors %}
-                        <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                        <form action="{% url 'Manage:search_visitor' %}" method="POST" onsubmit="return checkQuery()">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="input-group" style="width: 50%; margin: auto; display: flex;">
+                                    <div class="form-group" style="width: 50%; margin: auto; display: flex;">
                                         <input id="query_field_id" type="text" class="form-control" name="query">
                                         <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Search</button>
-                                </span>
+                                            <button class="btn btn-default" type="submit">Search</button>
+                                        </span>
                                     </div>
+
                                 </div>
 
                             </div>
@@ -95,7 +95,7 @@
                             </table>
                         </form>
                     {% else %}
-                        <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                        <form action="{% url 'Manage:search_visitor' %}" method="POST" onsubmit="return checkQuery()">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-12">
@@ -134,7 +134,7 @@
                               id="first_name_error">No Visitors Found</span>
                     {% endif %}
                 {% else %}
-                    <form action="{% url 'Manage:search_visitor' %}" method="POST">
+                    <form action="{% url 'Manage:search_visitor' %}" method="POST" onsubmit="return checkQuery()">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
@@ -220,6 +220,11 @@
         </div>
     </div>
     <script>
+        function checkQuery() {
+            var query = document.getElementById("query_field_id");
+            return query.value.toString().length !== 0;
+        }
+
         $('document').ready(function () {
 
             $('#clear_button').hide().click(function () {
